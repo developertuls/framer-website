@@ -22,7 +22,7 @@ export default function FeaturedCollections() {
     <section className="py-20 px-4 md:px-12">
       
       {/*  Animated Heading */}
-      <div className="flex justify-center items-center py-12 overflow-visible perspective-[1000px]">
+      <div className="flex md:mt-[-90]  justify-center items-center py-12 overflow-visible perspective-[1000px]">
         <h2
           className="
             font bold
@@ -42,7 +42,7 @@ export default function FeaturedCollections() {
           </AnimatedHeading>
 
           <AnimatedHeading direction="right">
-            <span className="text-[#f31c6b]">Collections</span>
+            <span className="text-[#000]">Collections</span>
           </AnimatedHeading>
         </h2>
       </div>
