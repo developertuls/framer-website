@@ -8,17 +8,17 @@ export default function AnimatedHeading({ children, direction = "left" }) {
     <motion.span
       initial={{
         opacity: 0,
-        x: direction === "left" ? -120 : 120,
+        x: direction === "left" ? -80 : 80,
       }}
       whileInView={{
         opacity: 1,
         x: 0,
       }}
       transition={{
-        duration: 1,
+        duration: 0.8,
         ease: "easeOut",
       }}
-      viewport={{ once: true, amount: 0.5 }}
+      viewport={{ once: true, amount: 0.2 }}
       className="inline-block"
     >
       {children}
