@@ -18,7 +18,7 @@ const wedding = [
     id: 3,
     image: "/fu-3.jpeg",
     title: "Wedding Tray 3",
-     slug: "nikah-fra",
+     slug: "nikah-fr",
      price:50
   },
   {
@@ -33,14 +33,14 @@ const wedding = [
     id: 5,
     image: "/fu-5.jpeg",
     title: "Wedding Tray 5",
-     slug: "nikah-fra",
+     slug: "nikah-fa",
      price:50
   },
   {
     id: 6,
     image: "/fu-7.jpeg",
     title: "Wedding Tray 6",
-     slug: "nikah-fra",
+     slug: "nikah-ra",
      price:50
   },
 
@@ -48,7 +48,7 @@ const wedding = [
     id: 7,
     image: "/fu-7.jpeg",
     title: "Wedding Tray 6",
-     slug: "nikah-fra",
+     slug: "nikh-fra",
      price:50
   },
 
@@ -56,7 +56,7 @@ const wedding = [
     id: 8,
     image: "/fu-8.jpeg",
     title: "Wedding Tray 7",
-     slug: "nikah-fra",
+     slug: "nkah-fra",
      price:50
   },
 
@@ -64,7 +64,7 @@ const wedding = [
     id: 9,
     image: "/fu-9.jpeg",
     title: "Wedding Tray 8",
-     slug: "nikah-fra",
+     slug: "niah-fra",
      price:50
   },
 
@@ -72,14 +72,14 @@ const wedding = [
     id: 10,
     image: "/fu-10.jpeg",
     title: "Wedding Tray 9",
-     slug: "nikah-fra",
+     slug: "nika-fra",
      price:50
   },
   {
     id: 11,
     image: "/fu-11.jpeg",
     title: "Wedding Tray 10",
-     slug: "nikah-fra",
+     slug: "nikah",
      price:50
   },
 
@@ -87,7 +87,7 @@ const wedding = [
     id: 12,
     image: "/fu-12.jpeg",
     title: "Wedding Tray 11",
-     slug: "nikah-fra",
+     slug: "nik-fra",
      price:50
   },
 ];

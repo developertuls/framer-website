@@ -7,11 +7,14 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
-  "/images/fatima.avif",
+  "/slider-3.jpg",
   "/hero-1.jpeg",
   "/hero-2.jpeg",
   "/hero-3.jpeg",
   "/hero-4.jpeg",
+  "/slide-1.jpg",
+  "/slider-2.jpeg",
+  "/slider-4.jpg",
 ];
 
 const directionKeys = ["left", "right", "top", "bottom"];
@@ -103,8 +106,7 @@ export default function HeroSlider() {
           </h1>
 
           <p className="mt-4 text-base sm:text-lg md:text-xl text-white/90">
-            Handcrafted, timeless pieces that preserve memories
-            and elevate interiors.
+           Timeless, handcrafted pieces made with love for any occasion, whether you'd like to capture a memory or just decorate your home!
           </p>
 
           <Link

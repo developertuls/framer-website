@@ -12,7 +12,7 @@ const collections = [
   { id: 3, title: "Custom Resin Art", slug: "custom-resin-art", image: "/fu-16.jpg" },
   { id: 4, title: "Wedding Keepsakes", slug: "custom-resin-art", image: "/fu-10.jpeg" },
   { id: 5, title: "Wedding Keepsakes", slug: "custom-resin-art", image: "/fu-17.jpg" },
-  { id: 6, title: "Custom Resin Art", slug: "custom-resin-art", image: "/image-3.jpg" },
+  { id: 6, title: "Custom Resin Art", slug: "custom-resin-art", image: "/slider-3.jpg" },
 ];
 
 export default function FeaturedCollections() {
@@ -21,11 +21,11 @@ export default function FeaturedCollections() {
   return (
     <section className="py-20 px-4 md:px-12">
       
-      {/* 🔥 Animated Heading */}
+      {/*  Animated Heading */}
       <div className="flex justify-center items-center py-12 overflow-visible perspective-[1000px]">
         <h2
           className="
-            featured
+            font bold
             bg-white px-6 py-4
             text-center text-4xl md:text-6xl font-bold
             flex gap-3
