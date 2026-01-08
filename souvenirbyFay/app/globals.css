@@ -1,0 +1,72 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+
+@import "tailwindcss";
+
+
+.font-h1-heropage{
+font-family: "DM Serif Display", serif;
+}
+
+
+
+
+
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+body {
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+@keyframes pan-left {
+  from {
+    transform: scale(1.05) translateX(0);
+  }
+  to {
+    transform: scale(1.15) translateX(-40px);
+  }
+}
+
+@keyframes pan-right {
+  from {
+    transform: scale(1.05) translateX(0);
+  }
+  to {
+    transform: scale(1.15) translateX(40px);
+  }
+}
+
+@keyframes pan-up {
+  from {
+    transform: scale(1.05) translateY(0);
+  }
+  to {
+    transform: scale(1.15) translateY(-40px);
+  }
+}
+
+.animate-pan-left {
+  animation: pan-left 10s linear forwards;
+}
+.animate-pan-right {
+  animation: pan-right 10s linear forwards;
+}
+.animate-pan-up {
+  animation: pan-up 10s linear forwards;
+}
+
+.featured{
+   font-family: "Michroma", sans-serif; 
+}
