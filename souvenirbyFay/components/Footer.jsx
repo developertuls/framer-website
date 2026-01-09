@@ -77,7 +77,7 @@ export default function Footer() {
               Contact
             </h4>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2">
+              <li className="flex items-center gap-2 hover:text-white">
                 <Mail size={16} />
                <a href="#">
                   <span>souvenirbyFay@gmail.com</span>
@@ -89,7 +89,8 @@ export default function Footer() {
                   <Instagram size={18} />
                 </a>
                 <a href="#" className="hover:text-white transition">
-                  <Facebook size={18} />
+                 
+                  <span>souvenirbyFayinstagram</span>
                 </a>
 
               </li>
