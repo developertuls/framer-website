@@ -1,71 +1,62 @@
 
-
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
 
 const CurrencyContext = createContext(null);
 
-const DEFAULT_CURRENCY = {
+export function useCurrency() {
+  return useContext(CurrencyContext);
+}
+
+const DEFAULT = {
   currency: "BDT",
   symbol: "৳",
   rate: 1,
 };
 
 export default function CurrencyProvider({ children }) {
-  const [currency, setCurrency] = useState(DEFAULT_CURRENCY);
+  const [state, setState] = useState(DEFAULT);
 
-  // 🔁 Manual change
-  const changeCurrency = (code) => {
-    const map = {
-      BDT: { currency: "BDT", symbol: "৳", rate: 1 },
-      USD: { currency: "USD", symbol: "$", rate: 0.0091 },
-      GBP: { currency: "GBP", symbol: "£", rate: 0.0072 },
-      EUR: { currency: "EUR", symbol: "€", rate: 0.0084 },
-    };
-
-    const selected = map[code] || DEFAULT_CURRENCY;
-
-    console.log("🔄 Currency manually changed:", selected);
-
-    setCurrency(selected);
-    localStorage.setItem("currency", JSON.stringify(selected));
-  };
-
-  // 🌍 Load / detect
+  // 🌍 Load currency (cookie → localStorage → default)
   useEffect(() => {
-    const saved = localStorage.getItem("currency");
-
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (parsed?.rate) {
-          console.log("📦 Currency loaded:", parsed);
-          setCurrency(parsed);
-          return;
-        }
-      } catch {
-        localStorage.removeItem("currency");
+    try {
+      const saved = localStorage.getItem("currency");
+      if (saved) {
+        setState(JSON.parse(saved));
+        return;
       }
-    }
 
-    console.log("🌍 Default currency applied:", DEFAULT_CURRENCY);
-    setCurrency(DEFAULT_CURRENCY);
-    localStorage.setItem("currency", JSON.stringify(DEFAULT_CURRENCY));
+      const cookie = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("geo_currency="));
+
+      if (cookie) {
+        const value = JSON.parse(decodeURIComponent(cookie.split("=")[1]));
+        setState(value);
+        localStorage.setItem("currency", JSON.stringify(value));
+      }
+    } catch (e) {
+      console.error("Currency load error:", e);
+    }
   }, []);
 
-  // ✅ SAFE convert (currency always exists)
-  const convert = (price) => {
-    if (!currency || !currency.rate) return Number(price);
-    return Number((price * currency.rate).toFixed(2));
+  // 🔁 Manual switch
+  const changeCurrency = (data) => {
+    setState(data);
+    localStorage.setItem("currency", JSON.stringify(data));
   };
+
+  // 💱 Convert price
+  const convert = (price) =>
+    Number((Number(price) * state.rate).toFixed(2));
 
   return (
     <CurrencyContext.Provider
       value={{
-        currency: currency.currency,
-        symbol: currency.symbol,
-        rate: currency.rate,
+        currency: state.currency,
+        symbol: state.symbol,
+        rate: state.rate,
         convert,
         changeCurrency,
       }}
@@ -74,12 +65,3 @@ export default function CurrencyProvider({ children }) {
     </CurrencyContext.Provider>
   );
 }
-
-// ✅ custom hook
-export const useCurrency = () => {
-  const ctx = useContext(CurrencyContext);
-  if (!ctx) {
-    throw new Error("useCurrency must be used inside CurrencyProvider");
-  }
-  return ctx;
-};
