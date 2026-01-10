@@ -5,7 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Nav from "@/components/Nav";          // Language switch
-import Currency from "@/components/Currency";
+import  Currency  from "@/components/Currency";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);

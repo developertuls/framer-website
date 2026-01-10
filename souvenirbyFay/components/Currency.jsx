@@ -3,20 +3,22 @@
 
 import { useCurrency } from "@/context/CurrencyContext";
 
+const options = ["BDT", "USD", "GBP", "EUR"];
+
 export default function Currency() {
   const { currency, changeCurrency } = useCurrency();
 
   return (
-    <div className="flex gap-3 items-center">
-      {["GBP", "USD", "EUR"].map((cur) => (
+    <div className="flex gap-2">
+      {options.map((code) => (
         <button
-          key={cur}
-          onClick={() => changeCurrency(cur)}
-          className={`px-3 py-1 text-sm border rounded
-            ${currency === cur ? "bg-black text-white" : ""}
+          key={code}
+          onClick={() => changeCurrency(code)}
+          className={`px-3 py-1 border rounded transition
+            ${currency === code ? "bg-black text-white" : "bg-white"}
           `}
         >
-          {cur}
+          {code}
         </button>
       ))}
     </div>

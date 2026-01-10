@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -19,6 +20,7 @@ export default function OrderPage() {
   const [showImage, setShowImage] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
+  // ✅ product FIRST
   const allProducts = [...wedding, ...islamic, ...resin];
   const product = allProducts.find(item => item.slug === slug);
 
@@ -30,7 +32,8 @@ export default function OrderPage() {
     );
   }
 
-  const unitPrice = Number(convert(product.price));
+  // ✅ THEN price calculation
+  const unitPrice = convert(product.price);
   const totalPrice = unitPrice * quantity;
 
   return (
@@ -57,7 +60,7 @@ export default function OrderPage() {
               alt={product.title}
               fill
               priority
-              className="object-contain animate-slow-pan "
+              className="object-contain animate-slow-pan"
             />
           </div>
         </div>
@@ -84,82 +87,58 @@ export default function OrderPage() {
             </span>
           </div>
         </div>
-<div className="bg-[#f4f1ee] p-10 rounded-2xl space-y-8">
 
-  {/* TITLE */}
-  <h1 className="text-5xl font-serif text-center capitalize text-gray-800">
-    {product.title}
-  </h1>
+        {/* RIGHT DETAILS */}
+        <div className="bg-[#f4f1ee] p-10 rounded-2xl space-y-8">
 
-  {/* PRICE */}
-  <div className="text-center space-y-2">
-    <p className="text-xl tracking-wide text-gray-700">
-      {symbol}{unitPrice.toFixed(2)} <span className="uppercase">{currency}</span>
-    </p>
-    <p className="text-sm text-gray-500">
-      Taxes included. Shipping calculated at checkout.
-    </p>
-  </div>
+          <h1 className="text-5xl font-serif text-center capitalize text-gray-800">
+            {product.title}
+          </h1>
 
-  {/* CUSTOM TEXT */}
-  <div className="space-y-2">
-    <label className="text-sm text-gray-600">
-      Customised text: Quote, Couples name & Date:
-    </label>
-    <textarea
-      rows={4}
-      className="w-full bg-transparent border border-gray-400 rounded-xl p-4 focus:outline-none focus:ring-1 focus:ring-gray-700"
-    />
-  </div>
+          {/* PRICE */}
+          <div className="text-center space-y-2">
+            <p className="text-xl tracking-wide text-gray-700">
+              {symbol}{unitPrice.toFixed(2)}{" "}
+              <span className="uppercase">{currency}</span>
+            </p>
+            <p className="text-sm text-gray-500">
+              Taxes included. Shipping calculated at checkout.
+            </p>
+          </div>
 
-  {/* QUANTITY */}
-  <div className="space-y-2">
-    <label className="text-sm text-gray-600">Quantity</label>
-    <div className="inline-flex items-center border border-gray-400 rounded-xl overflow-hidden">
-      <button
-        onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-        className="px-4 py-2 text-xl hover:bg-gray-200"
-      >
-        −
-      </button>
-      <span className="px-6 py-2">{quantity}</span>
-      <button
-        onClick={() => setQuantity(quantity + 1)}
-        className="px-4 py-2 text-xl hover:bg-gray-200"
-      >
-        +
-      </button>
-    </div>
-  </div>
+          {/* QUANTITY */}
+          <div className="space-y-2">
+            <label className="text-sm text-gray-600">Quantity</label>
+            <div className="inline-flex items-center border border-gray-400 rounded-xl overflow-hidden">
+              <button
+                onClick={() => quantity > 1 && setQuantity(quantity - 1)}
+                className="px-4 py-2 text-xl hover:bg-gray-200"
+              >
+                −
+              </button>
+              <span className="px-6 py-2">{quantity}</span>
+              <button
+                onClick={() => setQuantity(quantity + 1)}
+                className="px-4 py-2 text-xl hover:bg-gray-200"
+              >
+                +
+              </button>
+            </div>
+          </div>
 
-  {/* SPECIAL REQUEST */}
-  <div className="space-y-2">
-    <label className="text-sm text-gray-600">
-      Any special requests:
-    </label>
-    <textarea
-      rows={4}
-      className="w-full bg-transparent border border-gray-400 rounded-xl p-4 focus:outline-none focus:ring-1 focus:ring-gray-700"
-    />
-  </div>
+          {/* TOTAL */}
+          <p className="text-center text-lg font-medium">
+            Total: {symbol}{totalPrice.toFixed(2)}
+          </p>
 
-  {/* ADD TO CART */}
-  <button className="w-full bg-[#2f3531] text-white py-4 rounded-xl text-lg tracking-wide hover:opacity-90 transition">
-    Add to cart
-  </button>
+          <button className="w-full bg-[#2f3531] text-white py-4 rounded-xl text-lg tracking-wide hover:opacity-90 transition">
+            Add to cart
+          </button>
 
-
-
-
-        {/* FOOT NOTE */}
-        <p className="text-sm text-gray-500">
-          ✔ {t.madeToOrder} • ✔ {t.worldwideShipping} • ✔ {t.noRefund}  • ✔ {t.Privacy} 
-        </p>
-
-
-
-</div>
-
+          <p className="text-sm text-gray-500 text-center">
+            ✔ {t.madeToOrder} • ✔ {t.worldwideShipping} • ✔ {t.noRefund}
+          </p>
+        </div>
       </div>
     </>
   );
