@@ -8,7 +8,10 @@ const options = {
   USD: { currency: "USD", symbol: "$", rate: 0.0091 },
   GBP: { currency: "GBP", symbol: "£", rate: 0.0072 },
   EUR: { currency: "EUR", symbol: "€", rate: 0.0084 },
+   SA: { currency: "SAR", symbol: "﷼", rate: 0.034 },
 };
+
+//  SAR: { symbol: "﷼" },
 
 export default function Currency() {
   const { currency, changeCurrency } = useCurrency();
