@@ -4,8 +4,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Nav from "@/components/Nav";          // Language switch
-import  Currency  from "@/components/Currency";
+import CurrencySelector from "@/components/CurrencySelector"
+import LanguageSwitcher from "./LanguageSwitcher";
+
+
+
+
+
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -36,8 +42,7 @@ export default function Navbar() {
 
         {/* Right Controls */}
         <div className="flex items-center gap-4">
-          <Nav />        {/* Language */}
-          <Currency />  {/* Currency */}
+      
 
           {/* Desktop CTA */}
           <Link
@@ -54,6 +59,8 @@ export default function Navbar() {
           >
             ☰
           </button>
+          <CurrencySelector/>
+          <LanguageSwitcher/>
         </div>
       </div>
 

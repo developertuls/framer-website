@@ -23,6 +23,9 @@ const itemVariant = {
   },
 };
 
+
+
+
 export default function CollectionGrid({ images, title }) {
   return (
     <motion.div
@@ -47,14 +50,25 @@ export default function CollectionGrid({ images, title }) {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+            <div className="border   absolute inset-0 bg-black/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-            {/* Text */}
-            <div className="absolute bottom-6 left-6 right-6 text-white opacity-0 translate-y-6 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+            
+          </Link>
+
+
+
+{/* Text */}
+            <div className=" transition-all duration-500 p-8">
               <h3 className="text-xl font-medium">{item.title}</h3>
               <p className="text-sm opacity-80 mt-1">View details →</p>
+              <p className="text-sm opacity-80 mt-1">price :{item.price}</p>
+             
             </div>
-          </Link>
+
+
+
+
+
         </motion.div>
       ))}
     </motion.div>

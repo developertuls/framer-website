@@ -20,9 +20,11 @@ export default async function CollectionDetails({ params }) {
     <section className="max-w-7xl mx-auto px-4 md:px-10 py-24 ">
       <h2 className="text-4xl  mb-14 capitalize text-center ">
         {title}
+        
       </h2>
-
+       
       <CollectionGrid images={images} title={title} />
+    
     </section>
   );
-}
+} 

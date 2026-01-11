@@ -1,27 +1,32 @@
 
 "use client";
 
+
 import Image from "next/image";
 import Link from "next/link";
 import AnimatedHeading from "@/components/AnimatedHeading";
-import { useLanguage } from "@/context/LanguageContext";
+import CollectionsData from "@/collectionData/CollectionsData"
 
-const collections = [
-  { id: 1, title: "Wedding Keepsakes", slug: "wedding-keepsakes", image: "/fu-11.jpeg" },
-  { id: 2, title: "Islamic Calligraphy", slug: "islamic-calligraphy", image: "/fu-14.jpeg" },
-  { id: 3, title: "Custom Resin Art", slug: "custom-resin-art", image: "/fu-16.jpg" },
-  { id: 4, title: "Wedding Keepsakes", slug: "custom-resin-art", image: "/fu-10.jpeg" },
-  { id: 5, title: "Wedding Keepsakes", slug: "custom-resin-art", image: "/fu-17.jpg" },
-  { id: 6, title: "Custom Resin Art", slug: "custom-resin-art", image: "/slider-3.jpg" },
-];
+/************************************************************************/
+
+
+
+
+
 
 export default function FeaturedCollections() {
-  const { t } = useLanguage();
+ 
 
   return (
     <section className="py-20 px-4 md:px-12">
       
-      {/*  Animated Heading */}
+     
+
+
+
+
+     {/* Heading FeaturedCollection style animate */}
+
       <div className="flex md:mt-[-90]  justify-center items-center py-12 overflow-visible perspective-[1000px]">
         <h2
           className="
@@ -35,10 +40,10 @@ export default function FeaturedCollections() {
           "
           style={{
             textShadow: "0 6px 18px rgba(0,0,0,0.25)",
-          }}
-        >
+          }}>
+
           <AnimatedHeading direction="left">
-            {t?.featured || "Featured"}
+            <span className="text-[#000]">Featured</span>
           </AnimatedHeading>
 
           <AnimatedHeading direction="right">
@@ -47,9 +52,14 @@ export default function FeaturedCollections() {
         </h2>
       </div>
 
+
+
+
+
+
       {/* 🖼️ Grid */}
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-10">
-        {collections.map((item) => (
+        {CollectionsData.map((item) => (
           <Link
             key={item.id}
             href={`/collections/${item.slug}`}
@@ -64,6 +74,7 @@ export default function FeaturedCollections() {
                 sizes="(max-width: 768px) 100vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
+            
             </div>
 
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40
@@ -72,6 +83,7 @@ export default function FeaturedCollections() {
                               translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <h3 className="text-xl font-semibold text-gray-900">
                   {item.title}
+                  {/* <p>price {item.price}</p> */}
                 </h3>
               </div>
             </div>

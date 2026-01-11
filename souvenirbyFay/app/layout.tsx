@@ -5,9 +5,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-import { LanguageProvider } from "@/context/LanguageContext";
-import CurrencyProvider from "@/context/CurrencyContext";
+import { CurrencyProvider } from "@/context/CurrencyContext";
+import { LanguageProvider} from "@/context/LanguageContext"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,17 +33,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* 🌍 GLOBAL PROVIDERS */}
-        <LanguageProvider>
-          <CurrencyProvider>
-
-            {/* 🧭 GLOBAL UI */}
+       
+      {/* 🌍 GLOBAL PROVIDERS */}
+      <LanguageProvider>
+     <CurrencyProvider>
+     
+    
+     
             <Navbar />
             {children}
             <Footer />
-
-          </CurrencyProvider>
-        </LanguageProvider>
+    
+     </CurrencyProvider>
+     </LanguageProvider>
       </body>
     </html>
   );
