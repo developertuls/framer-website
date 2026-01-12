@@ -4,6 +4,9 @@ import islamic from "@/data/islamic";
 import resin from "@/data/resin";
 import CollectionGrid from "@/components/CollectionGrid";
 
+
+
+
 const collectionMap = {
   "wedding-keepsakes": wedding,
   "islamic-calligraphy": islamic,

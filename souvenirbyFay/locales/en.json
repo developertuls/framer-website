@@ -1,11 +1,33 @@
 
 
 {
-  "customText": "Customised text: Quote, Couples name & Date",
+  "Personalised Engraving": "Customised text: Quote, Couples name & Date",
   "quantity": "Quantity",
-  "specialRequest": "Any special requests",
+  "anyspecialRequest": "Any special requests",
   "addToCart": "Add to cart",
   "glassBoxes": "Glass boxes",
   "withGlass": "With glass boxes",
-  "withoutGlass": "Without glass boxes"
+  "withoutGlass": "Without glass boxes",
+   "about": "About Us",
+  "products": "Products",
+  "policy": "Policy",
+  "contact": "Contact Us",
+  "subscribe": "Subscribe",
+  "noReturn": "This is a customised product. No returns or refunds once the order is placed.",
+"weddingTray": "Wedding Tray",
+
+
+
+
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": "We respect your privacy and are committed to protecting your personal information.",
+    "info": "We collect personal information only when necessary to provide our services.",
+    "cookies": "Cookies are used to improve your experience on our website.",
+    "rights": "You have the right to access, update, or delete your personal data.",
+    "contact": "If you have questions about this policy, please contact us."
+  }
+
+
+
 }

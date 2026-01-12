@@ -1,13 +1,15 @@
 
-import Link from "next/link";
-import { Instagram, Facebook, Mail } from "lucide-react";
+"use client";
 
-export default function Footer() {
+import Link from "next/link";
+import { Instagram, Mail } from "lucide-react";
+
+export default function Footer({ onOpenPrivacy }) {
   return (
     <footer className="bg-[#070428] text-gray-300">
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-4">
-          
+
           {/* Brand */}
           <div>
             <h3 className="font-serif text-2xl text-white">
@@ -24,26 +26,10 @@ export default function Footer() {
               Quick Links
             </h4>
             <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/" className="hover:text-white transition">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/shop" className="hover:text-white transition">
-                  Shop
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-white transition">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition">
-                  Contact
-                </Link>
-              </li>
+              <li><Link href="/">Home</Link></li>
+              <li><Link href="/shop">Shop</Link></li>
+              <li><Link href="/about">About Us</Link></li>
+              <li><Link href="/contact">Contact</Link></li>
             </ul>
           </div>
 
@@ -53,20 +39,15 @@ export default function Footer() {
               Help
             </h4>
             <ul className="space-y-3 text-sm">
+              <li><Link href="/shipping">Shipping & Delivery</Link></li>
+              <li><Link href="/returns">Return Policy</Link></li>
               <li>
-                <Link href="/shipping" className="hover:text-white transition">
-                  Shipping & Delivery
-                </Link>
-              </li>
-              <li>
-                <Link href="/returns" className="hover:text-white transition">
-                  Return Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-white transition">
+                <button
+                  onClick={onOpenPrivacy}
+                  className="hover:text-white transition"
+                >
                   Privacy Policy
-                </Link>
+                </button>
               </li>
             </ul>
           </div>
@@ -77,33 +58,23 @@ export default function Footer() {
               Contact
             </h4>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2 hover:text-white">
+              <li className="flex items-center gap-2">
                 <Mail size={16} />
-               <a href="#">
-                  <span>souvenirbyFay@gmail.com</span>
-               </a>
-              
+                souvenirbyFay@gmail.com
               </li>
-              <li className="mt-4 flex gap-4">
-                <a href="https://www.instagram.com/souvenirbyfay/" className="hover:text-white transition">
-                  <Instagram size={18} />
-                </a>
-                <a href="#" className="hover:text-white transition">
-                 
-                  <span>souvenirbyFayinstagram</span>
-                </a>
 
+              <li className="flex items-center gap-2">
+                <Instagram size={18} />
+                souvenirbyFay
               </li>
             </ul>
           </div>
+
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="mx-auto max-w-7xl px-6 py-6 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Fatima Artistry. All rights reserved.
-        </div>
+      <div className="border-t border-gray-800 py-6 text-center text-sm text-gray-500">
+        © {new Date().getFullYear()} SouvenirbyFay Artistry. All rights reserved.
       </div>
     </footer>
   );

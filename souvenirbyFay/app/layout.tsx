@@ -3,10 +3,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { CurrencyProvider } from "@/context/CurrencyContext";
-import { LanguageProvider} from "@/context/LanguageContext"
+import { LanguageProvider } from "@/context/LanguageContext";
+import ClientLayout from "@/components/ClientLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,19 +32,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-       
-      {/* 🌍 GLOBAL PROVIDERS */}
-      <LanguageProvider>
-     <CurrencyProvider>
-     
-    
-     
-            <Navbar />
-            {children}
-            <Footer />
-    
-     </CurrencyProvider>
-     </LanguageProvider>
+        <LanguageProvider>
+          <CurrencyProvider>
+            <ClientLayout>{children}</ClientLayout>
+          </CurrencyProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
