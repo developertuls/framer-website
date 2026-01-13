@@ -1,11 +1,12 @@
 
+
 "use client";
 
 import { useParams } from "next/navigation";
 import { useState, useRef } from "react";
 import Image from "next/image";
 import FullScreenImage from "@/components/FullScreenImage";
-
+import AnimatedFrom from "@/components/AnimatedFrom"
 import wedding from "@/data/wedding";
 import islamic from "@/data/islamic";
 import resin from "@/data/resin";
@@ -24,7 +25,7 @@ export default function OrderPage() {
   const [specialRequest, setSpecialRequest] = useState("");
   const [showImage, setShowImage] = useState(false);
   const [isHover, setIsHover] = useState(false);
-
+  const [selectedSize, setSelectedSize] = useState(null);
   const imageRef = useRef(null);
   const [zoomStyle, setZoomStyle] = useState({
     transform: "scale(1)",
@@ -70,7 +71,7 @@ export default function OrderPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
           {/* ================= IMAGE ================= */}
-          <div>
+          <div className="md:mt-13">
             <div
               ref={imageRef}
               onMouseEnter={() => setIsHover(true)}
@@ -98,40 +99,88 @@ export default function OrderPage() {
           </div>
 
           {/* ================= FORM ================= */}
+<AnimatedFrom>
+          
           <div className="bg-white rounded-3xl p-6 md:p-10 shadow space-y-8">
 
             {/* TITLE */}
             <div className="space-y-3">
               <h1 className="text-3xl md:text-4xl font-serif">
                 {product.title}
+               
               </h1>
 
               {/* PRICE CARD */}
               <div className="bg-gradient-to-r from-[#5c2574] to-[#7a3fa1] text-white p-5 rounded-2xl shadow-lg">
-                <p className="text-sm opacity-90">{t("total Price")}</p>
-                <p className="text-2xl font-semibold">
-                  {totalPrice} {currency}
+              
+                <p className="">
+               {t("priceAfterReview")}
                 </p>
               </div>
             </div>
 
-            {/* PRICE BREAKDOWN */}
-            <div className="border rounded-2xl p-4 text-sm space-y-2">
-              <div className="flex justify-between">
-                <span>{t("unitPrice")}</span>
-                <span>{unitPrice} {currency}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>{t("quantity")}</span>
-                <span>× {quantity}</span>
-              </div>
-              {glassBox === "with" && (
-                <div className="flex justify-between">
-                  <span>{t("glassBoxes")}</span>
-                  <span>+ {convertPrice(glassBoxPrice)} {currency}</span>
-                </div>
-              )}
-            </div>
+           
+
+
+
+ {/* sizeBox */}
+ 
+<div className="space-y-3">
+  <p className="text-sm font-medium">{t("selectSize")}</p>
+
+ <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+  {/* 13 inch */}
+  <button
+    onClick={() => setSelectedSize("13")}
+    className={`rounded-2xl border p-4 text-left transition
+      ${
+        selectedSize === "13"
+          ? "bg-[#501a67] text-white shadow-lg"
+          : "bg-white hover:bg-gray-50"
+      }`}
+  >
+    <p className="font-medium">
+      {t("engagement13_title")}
+    </p>
+
+    <p className=" opacity-80 mt-1">
+      {t("from")} {convertPrice(115)}
+    </p>
+  </button>
+
+  {/* 10 inch */}
+  <button
+    onClick={() => setSelectedSize("10")}
+    className={`rounded-2xl border p-4 text-left transition
+      ${
+        selectedSize === "10"
+          ? "bg-[#501a67] text-white shadow-lg"
+          : "bg-white hover:bg-gray-50"
+      }`}
+  >
+    <p className="font-medium">
+     {t("engagement10_title")}
+    </p>
+
+    <p className="text-sm opacity-80 mt-1">
+      {t("from")} {convertPrice(100)}
+    </p>
+  </button>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+           
 
             {/* GLASS BOX */}
            <div className="space-y-3">
@@ -220,6 +269,7 @@ export default function OrderPage() {
 
 
           </div>
+          </AnimatedFrom>
         </div>
       </div>
 
