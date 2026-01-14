@@ -12,6 +12,10 @@ const collections = [
      slug: "custom-resin-art", image: "/fu-17.jpg"  , price:"$80" },
   { id: 6, title: "Custom Resin Art",
      slug: "custom-resin-art", image: "/slider-3.jpg"  , price:"$70" },
+  { id: 7, title: "Wedding Keepsakes",
+     slug: "custom-resin-art", image: "/hen.jpg"   },
+   { id: 8, title: "Wedding Keepsakes",slug: "custom-resin-art", image: "/p4.jpg"},
+   { id: 9, title: "Wedding Keepsakes",slug: "custom-resin-art", image: "/p6.jpg"},
 ];
 
 

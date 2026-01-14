@@ -4,19 +4,22 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import CurrencySelector from "@/components/CurrencySelector";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 
-
-
-
-
-
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-   const { t } = useLanguage();
+  const { t } = useLanguage();
+  const pathname = usePathname();
+
+  const navClass = (path) =>
+    `transition hover:opacity-70 ${
+      pathname === path
+        ? "text-[#44bd32] font-semibold "
+        : "text-gray-800"
+    }`;
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/90 backdrop-blur border-b">
@@ -30,41 +33,48 @@ export default function Navbar() {
             width={120}
             height={40}
             priority
-            className="object-contain"
           />
         </Link>
- {/* {t("specialRequest")} */}
+
         {/* DESKTOP NAV */}
-        <nav className="hidden lg:flex items-center gap-8 text-[15px] font-light text-gray-800">
-          <Link href="/" className="hover:opacity-70">{t("Home")}</Link>
-          <Link href="/products" className="hover:opacity-70">{t("Products")}</Link>
-          <Link href="/about" className="hover:opacity-70">{t("About")}</Link>
-          <Link href="/contact" className="hover:opacity-70">{t("Contact")}</Link>
-          <Link href="/faq" className="hover:opacity-70">{t("FAQ")}</Link>
+        <nav className="hidden lg:flex items-center gap-8 text-[15px] font-light">
+          <Link href="/" className={navClass("/") } >{t("Home" )}</Link>
+          <Link href="/products" className={navClass("/products")}>{t("Products")}</Link>
+          <Link href="/about" className={navClass("/about")}>{t("About")}</Link>
+          <Link href="/contact" className={navClass("/contact")}>{t("Contact")}</Link>
+          <Link href="/faq" className={navClass("/faq")}>{t("FAQ")}</Link>
         </nav>
 
-        {/* RIGHT CONTROLS */}
+        {/* RIGHT */}
         <div className="flex items-center gap-3">
 
-          {/* CTA */}
+          {/* CUSTOM ORDER CTA */}
           <Link
             href="/custom-order"
-            className="hidden md:inline-flex rounded-full border border-gray-400 px-6 py-2 text-sm font-medium text-gray-800 transition hover:bg-gray-900 hover:text-white"
+            className={`hidden md:inline-flex rounded-full px-6 py-2 text-sm font-medium transition
+              ${
+                pathname === "/custom-order"
+                  ? "bg-[#080249] text-white"
+                  : "border border-gray-400 text-gray-800 hover:bg-[#080249] hover:text-white"
+              }`}
           >
-        {t("CusTomOrder")}
+            {t("customOrder")}
           </Link>
 
           {/* Currency & Language */}
           <div className="hidden md:flex items-center gap-2">
-            <CurrencySelector />
-            <LanguageSwitcher />
+            <div className="rounded-full ring-2 ring-[#080249]/30">
+              <CurrencySelector />
+            </div>
+            <div className="rounded-full ring-2 ring-[#080249]/30">
+              <LanguageSwitcher />
+            </div>
           </div>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* MOBILE */}
           <button
             onClick={() => setOpen(!open)}
             className="lg:hidden text-2xl"
-            aria-label="Toggle menu"
           >
             ☰
           </button>
@@ -74,7 +84,7 @@ export default function Navbar() {
       {/* MOBILE MENU */}
       {open && (
         <div className="lg:hidden bg-white border-t shadow-xl">
-          <nav className="flex flex-col gap-5 px-6 py-6 text-gray-800">
+          <nav className="flex flex-col gap-5 px-6 py-6">
 
             {[
               { name: "Home", href: "/" },
@@ -87,22 +97,29 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="text-lg font-medium"
+                className={`text-lg ${
+                  pathname === link.href
+                    ? "text-[#e11840] font-semibold"
+                    : "text-[red]"
+                }`}
               >
                 {link.name}
               </Link>
             ))}
 
-            {/* MOBILE CTA */}
             <Link
               href="/custom-order"
               onClick={() => setOpen(false)}
-              className="mt-4 rounded-xl bg-black px-4 py-3 text-center text-white text-lg"
+              className={`mt-4 rounded-xl px-4 py-3 text-center text-lg
+                ${
+                  pathname === "/custom-order"
+                    ? "bg-[#080249] text-white"
+                    : "bg-black text-white"
+                }`}
             >
-              {t("Custom Order")}
+              {t("customOrder")}
             </Link>
 
-            {/* MOBILE CONTROLS */}
             <div className="mt-4 flex gap-3">
               <CurrencySelector />
               <LanguageSwitcher />

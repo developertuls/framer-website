@@ -1,25 +1,17 @@
 
 "use client";
-
 import { motion } from "framer-motion";
 
-export default function AnimateFromBottom({ children }) {
+export default function AnimatedFrom({ children }) {
   return (
     <motion.div
-      initial={{
-        y: 104,
-        opacity: 0,
-      }}
-      whileInView={{
-        y: 0,
-        opacity: 1,
-      }}
+      initial={{ y: 80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{
-   type: "spring",
-  stiffness: 40,
-  damping: 18,
+        duration: 1.4,
+        ease: [0.16, 1, 0.3, 1], // luxury smooth easing
       }}
-      viewport={{ once: true, amount: 0.2 }}
+      className="w-full"
     >
       {children}
     </motion.div>

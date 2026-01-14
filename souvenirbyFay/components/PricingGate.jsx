@@ -62,6 +62,7 @@ export default  function PricingGate({ open, onClose }) {
 
 <p className="mb-4 text-sm opacity-80 font-medium text-white">
   We also offer favors for weddings, engagements, baby showers & other special occasions.
+ Favors must be ordered at least 3 weeks in advance.
 </p>
 
 
