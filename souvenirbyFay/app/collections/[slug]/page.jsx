@@ -2,9 +2,8 @@
 "use client"
 
 import React ,{useState,useEffect} from "react";
-import wedding from "@/data/wedding";
-import islamic from "@/data/islamic";
-import resin from "@/data/resin";
+
+
 import CollectionGrid from "@/components/CollectionGrid";
 import PricingGate from "../../../components/PricingGate";
 
@@ -15,7 +14,7 @@ import PricingGate from "../../../components/PricingGate";
 const collectionMap = {
   "wedding-keepsakes": wedding,
   "islamic-calligraphy": islamic,
-  "custom-resin-art": resin,
+  // "custom-resin-art": resin,
 };
 
 export default  function CollectionDetails({ params }) {

@@ -8,20 +8,22 @@ import { motion } from "framer-motion";
 
 import FullScreenImage from "@/components/FullScreenImage";
 import OrderForm from "@/components/OrderForm";
-
-import wedding from "@/data/wedding";
-import islamic from "@/data/islamic";
-import resin from "@/data/resin";
+import ProductsData from "@/productData/ProductsData";
 
 export default function OrderPage() {
-  const { slug } = useParams();
+  // ✅ params ঠিকভাবে নিলাম
+  const params = useParams();
 
-  /* PRODUCT */
-  const allProducts = [...wedding, ...islamic, ...resin];
-  const product = allProducts.find(p => p.slug === slug);
+  const product = ProductsData.find(
+    (p) => p.slug === params.slug
+  );
 
   if (!product) {
-    return <p className="p-10 text-red-500">Product not found</p>;
+    return (
+      <p className="p-10 text-center text-red-500">
+        Product not found
+      </p>
+    );
   }
 
   /* IMAGE STATE */
@@ -32,6 +34,7 @@ export default function OrderPage() {
 
   const [zoomStyle, setZoomStyle] = useState({
     transform: "scale(1)",
+    transformOrigin: "center",
   });
 
   const handleMouseMove = (e) => {
@@ -61,9 +64,8 @@ export default function OrderPage() {
           <motion.div
             className="space-y-4"
             initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
           >
             <div
               ref={imageRef}
@@ -77,7 +79,11 @@ export default function OrderPage() {
               className="relative w-full aspect-square overflow-hidden rounded-3xl cursor-zoom-in bg-gray-100 shadow"
             >
               <Image
-                src={isHover && product.zoomImage ? product.zoomImage : activeImage}
+                src={
+                  isHover && product.zoomImage
+                    ? product.zoomImage
+                    : activeImage
+                }
                 alt={product.title}
                 fill
                 priority
@@ -86,10 +92,17 @@ export default function OrderPage() {
               />
             </div>
 
+            {/* BADGES */}
             <div className="flex flex-wrap gap-2 justify-center">
-              <span className="px-3 py-1 text-xs rounded-full bg-gray-100">✨ Handcrafted</span>
-              <span className="px-3 py-1 text-xs rounded-full bg-gray-100">🌍 Worldwide Delivery</span>
-              <span className="px-3 py-1 text-xs rounded-full bg-gray-100">🎁 Custom Made</span>
+              <span className="px-3 py-1 text-xs rounded-full bg-gray-100">
+                ✨ Handcrafted
+              </span>
+              <span className="px-3 py-1 text-xs rounded-full bg-gray-100">
+                🌍 Worldwide Delivery
+              </span>
+              <span className="px-3 py-1 text-xs rounded-full bg-gray-100">
+                🎁 Custom Made
+              </span>
             </div>
           </motion.div>
 

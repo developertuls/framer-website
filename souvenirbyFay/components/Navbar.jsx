@@ -8,6 +8,12 @@ import { usePathname } from "next/navigation";
 import CurrencySelector from "@/components/CurrencySelector";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
+import ProductsData from "@/productData/ProductsData";
+
+
+
+
+
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);

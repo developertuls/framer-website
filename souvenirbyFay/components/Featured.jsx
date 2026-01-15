@@ -1,95 +1,78 @@
 
-"use client";
-
-
-import Image from "next/image";
 import Link from "next/link";
-import AnimatedHeading from "@/components/AnimatedHeading";
-import CollectionsData from "@/collectionData/CollectionsData"
+import Image from "next/image";
+import ProductsData from "@/productData/ProductsData";
+import AnimatedHeading from "./AnimatedHeading";
 
-/************************************************************************/
-
-
-
-
-
-
-export default function FeaturedCollections() {
- 
+export default function HomeCollections() {
+  const wedding = ProductsData.filter(p => p.category === "wedding").slice(0, 6);
+  const islamic = ProductsData.filter(p => p.category === "islamic").slice(0, 6);
 
   return (
-    <section className="py-20 px-4 md:px-12">
-      
-     
+    <div className="space-y-24 px-4 md:px-10">
 
+      {/* ===== WEDDING COLLECTION ===== */}
+      <SectionHeading title1="Wedding" title2="Collection" />
 
+      <CollectionGrid
+        items={wedding}
+        category="wedding"
+      />
 
+      {/* ===== ISLAMIC COLLECTION ===== */}
+      <SectionHeading title1="Islamic" title2="Collection" />
 
-     {/* Heading FeaturedCollection style animate */}
+      <CollectionGrid
+        items={islamic}
+        category="islamic"
+      />
+    </div>
+  );
+}
 
-      <div className="flex md:mt-[-90]  justify-center items-center py-12 overflow-visible perspective-[1000px]">
-        <h2
-          className="
-            font bold
-            bg-white px-6 py-4
-            text-center text-4xl md:text-6xl font-bold
-            flex gap-3
-            shadow-xl
-            transform-gpu
-            -translate-y-4 md:-translate-y-10
-          "
-          style={{
-            textShadow: "0 6px 18px rgba(0,0,0,0.25)",
-          }}>
+/* ================== Reusable Components ================== */
 
-          <AnimatedHeading direction="left">
-            <span className="text-[#000]">Featured</span>
-          </AnimatedHeading>
+function SectionHeading({ title1, title2 }) {
+  return (
+    <div className="flex justify-center py-12">
+      <h2
+        className="bg-white px-6 py-4 text-center
+        text-3xl md:text-5xl font-bold
+        flex gap-2 shadow-xl -translate-y-6"
+        style={{ textShadow: "0 6px 18px rgba(0,0,0,0.25)" }}
+      >
+        <AnimatedHeading direction="left">
+          <span>{title1}</span>
+        </AnimatedHeading>
+        <AnimatedHeading direction="right">
+          <span>{title2}</span>
+        </AnimatedHeading>
+      </h2>
+    </div>
+  );
+}
 
-          <AnimatedHeading direction="right">
-            <span className="text-[#000]">Collections</span>
-          </AnimatedHeading>
-        </h2>
-      </div>
-
-
-
-
-
-
-      {/* 🖼️ Grid */}
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-10">
-        {CollectionsData.map((item) => (
-          <Link
-            key={item.id}
-            href={`/collections/${item.slug}`}
-            className="group relative overflow-hidden rounded-xl
-                       shadow-md hover:shadow-2xl transition-all duration-500"
-          >
-            <div className="relative h-[380px] w-full">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 33vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-            
-            </div>
-
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40
-                            transition-colors duration-500 flex items-end">
-              <div className="w-full bg-white/95 p-5 text-center
-                              translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h3 className="text-xl font-semibold text-gray-900">
-                  {item.title}
-                  {/* <p>price {item.price}</p> */}
-                </h3>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </section>
+function CollectionGrid({ items, category }) {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {items.map(item => (
+        <Link
+          key={item.id}
+          href={`/products?category=${category}&focus=${item.slug}`}
+          className="group"
+        >
+          <div className="overflow-hidden rounded-xl shadow-md">
+            <Image
+              src={item.image}
+              alt={item.title}
+              width={500}
+              height={500}
+              className="w-full h-[280px] object-cover
+              transition-transform duration-500 group-hover:scale-110"
+            />
+          </div>
+        </Link>
+      ))}
+    </div>
   );
 }
