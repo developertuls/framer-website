@@ -92,3 +92,29 @@ body {
 .animate-slow-pan {
   animation: slowPan 18s ease-in-out infinite;
 }
+
+
+
+.bgred {
+  background-image: linear-gradient( to right,#fff,#376e70,#fff);
+}
+
+
+
+
+
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.8s ease-out forwards;
+}

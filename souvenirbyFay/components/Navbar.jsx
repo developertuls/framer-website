@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import CurrencySelector from "@/components/CurrencySelector";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
-import ProductsData from "@/productData/ProductsData";
+
 
 
 
@@ -23,7 +23,7 @@ export default function Navbar() {
   const navClass = (path) =>
     `transition hover:opacity-70 ${
       pathname === path
-        ? "text-[#44bd32] font-semibold "
+        ? "text-[#B53471] font-semibold "
         : "text-gray-800"
     }`;
 
@@ -32,7 +32,7 @@ export default function Navbar() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center animate-pulse">
           <Image
             src="/fatimalogo.avif"
             alt="Fatima Artistry"
@@ -43,12 +43,12 @@ export default function Navbar() {
         </Link>
 
         {/* DESKTOP NAV */}
-        <nav className="hidden lg:flex items-center gap-8 text-[15px] font-light">
+        <nav className="hidden lg:flex items-center gap-8 text-[16px] font-light">
           <Link href="/" className={navClass("/") } >{t("Home" )}</Link>
           <Link href="/products" className={navClass("/products")}>{t("Products")}</Link>
-          <Link href="/about" className={navClass("/about")}>{t("About")}</Link>
+          <Link href="/about" className={navClass("/about")}>{t("About Us")}</Link>
           <Link href="/contact" className={navClass("/contact")}>{t("Contact")}</Link>
-          <Link href="/faq" className={navClass("/faq")}>{t("FAQ")}</Link>
+          {/* <Link href="/faq" className={navClass("/faq")}>{t("FAQ")}</Link> */}
         </nav>
 
         {/* RIGHT */}
@@ -64,7 +64,7 @@ export default function Navbar() {
                   : "border border-gray-400 text-gray-800 hover:bg-[#080249] hover:text-white"
               }`}
           >
-            {t("customOrder")}
+            {t("CustomOrder ")}
           </Link>
 
           {/* Currency & Language */}

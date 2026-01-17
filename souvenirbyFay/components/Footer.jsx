@@ -3,6 +3,11 @@
 
 import Link from "next/link";
 import { Instagram, Mail } from "lucide-react";
+import { image } from "framer-motion/client";
+
+
+
+
 
 export default function Footer({ onOpenPrivacy }) {
   return (
@@ -12,9 +17,18 @@ export default function Footer({ onOpenPrivacy }) {
 
           {/* Brand */}
           <div>
-            <h3 className="font-serif text-2xl text-white">
+
+            {/* logo image */}
+            <div className="flex justify-center items-center gap-3">
+               <img src="/sou.avif" alt="souven" 
+               
+               className="rounded-full bg-[#fff] w-[50px] h-[50px]"
+               />
+            <h3 className=" text-2xl text-white">
               SouvenirbyFay
             </h3>
+           
+            </div>
             <p className="mt-4 text-sm text-gray-400 leading-relaxed">
               Luxury handmade resin art crafted with care, faith, and elegance.
             </p>
@@ -27,7 +41,7 @@ export default function Footer({ onOpenPrivacy }) {
             </h4>
             <ul className="space-y-3 text-sm">
               <li><Link href="/">Home</Link></li>
-              <li><Link href="/shop">Shop</Link></li>
+              <li><Link href="/products">Shop</Link></li>
               <li><Link href="/about">About Us</Link></li>
               <li><Link href="/contact">Contact</Link></li>
             </ul>
@@ -63,9 +77,16 @@ export default function Footer({ onOpenPrivacy }) {
                 souvenirbyFay@gmail.com
               </li>
 
-              <li className="flex items-center gap-2">
-                <Instagram size={18} />
-                souvenirbyFay
+
+
+              <li className="">
+
+ <a href=" https://www.instagram.com/souvenirbyfay/" className="flex gap-2">
+
+    <Instagram size={18}  className="cursor-pointer "/>souvenirbyFay
+             
+             
+             </a>
               </li>
             </ul>
           </div>

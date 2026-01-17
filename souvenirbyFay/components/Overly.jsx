@@ -21,7 +21,7 @@ export default function OurWorkSection() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://instagram.fdac198-2.fna.fbcdn.net/v/t51.82787-15/530846552_17914861497160224_4563255880527262803_n.jpg?stp=dst-jpegr_e35_tt6&_nc_cat=100&ig_cache_key=MzY5NzcxNDExMjQ3MDM0Mzk0Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTQ0MC5oZHIuQzMifQ%3D%3D&_nc_ohc=_NKGTaIjTsgQ7kNvwExtpqP&_nc_oc=AdlbKFjFSn7pUvZixBK0VSCN3CjBS7MZRr29GoKofcMiBHZxZaynL-UEV36UqCVm5v0&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fdac198-2.fna&_nc_gid=Sgb1FMOJwo4YM5W4A8WtGg&oh=00_Afr4hKe452HtbLkwywCjdUxgKjztDsoHDQBzs_98qjGJEg&oe=69657000')",
+              "url('https://instagram.fdac198-2.fna.fbcdn.net/v/t51.82787-15/530846552_17914861497160224_4563255880527262803_n.jpg?stp=dst-jpegr_e35_tt6&_nc_cat=100&ig_cache_key=MzY5NzcxNDExMjQ3MDM0Mzk0Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTQ0MC5oZHIuQzMifQ%3D%3D&_nc_ohc=XNfvkuVLMPEQ7kNvwGO4rxn&_nc_oc=AdkCZlKQ-sbh9DEAZDbcu_ow1sis0Wjpomaj53VwOMBd27T_G2puqoBYLdV3_ay-Kc0&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fdac198-2.fna&_nc_gid=Pz4aO2EOR1gXvbfpz_xtMg&oh=00_AfoQtwHrji86wMiZbmn7ncmE5uRwJRIOOUFY0xGFezDoHA&oe=69711540')",
           }}
           initial={{ scale: 1.2 }}
           animate={{ scale: 1.05 }}

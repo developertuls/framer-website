@@ -110,11 +110,11 @@ export default function HeroSlider() {
           </p>
 
           <Link
-            href="/shop"
-            className="inline-block mt-6 rounded-full bg-white px-8 py-3
-                       text-sm font-semibold text-gray-900 hover:bg-gray-200 transition"
+            href="/products"
+            className="inline-block mt-6  rounded-full bg-white px-8 py-3
+                       text-xl font-semibold text-gray-900 hover:bg-gray-200 transition"
           >
-            Explore Collection
+            shop now
           </Link>
         </motion.div>
       </div>
