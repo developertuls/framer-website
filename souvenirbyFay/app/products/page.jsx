@@ -10,6 +10,9 @@ import { motion } from "framer-motion";
 import ProductsData from "@/productData/ProductsData";
 import PricingGate from "../../components/PricingGate";
 
+
+
+export const dynamic = "force-dynamic"; // 🔥 THIS IS REQUIRED
 export default function ProductsContent() {
   const searchParams = useSearchParams();
   const category = searchParams.get("category");
