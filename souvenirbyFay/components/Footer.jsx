@@ -2,63 +2,94 @@
 "use client";
 
 import Link from "next/link";
-import { Instagram, Mail } from "lucide-react";
-import { image } from "framer-motion/client";
-
-
+import { Instagram, Mail,   } from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
 
 
 
 export default function Footer({ onOpenPrivacy }) {
   return (
-    <footer className="bg-[#070428] text-gray-300">
+    <footer className="bg-[#0a313a] text-gray-300">
       <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="grid gap-10 md:grid-cols-4">
 
-          {/* Brand */}
-          <div>
+        {/* GRID */}
+        <div className="grid gap-12 sm:grid-cols-2 md:grid-cols-4">
 
-            {/* logo image */}
-            <div className="flex justify-center items-center gap-3">
-               <img src="/sou.avif" alt="souven" 
-               
-               className="rounded-full bg-[#fff] w-[50px] h-[50px]"
-               />
-            <h3 className=" text-2xl text-white">
-              SouvenirbyFay
-            </h3>
-           
+          {/* BRAND */}
+          <div className="space-y-4 text-center md:text-left">
+     
+
+   <Link href={'/'}>
+
+
+            <div className="flex justify-center md:justify-start items-center gap-3">
+              <img
+                src="/sou.avif"
+                alt="SouvenirbyFay"
+                className="h-12 w-12 rounded-full bg-white object-cover"
+              />
+              <h3 className="text-2xl font-semibold text-white">
+                SouvenirbyFay
+              </h3>
             </div>
-            <p className="mt-4 text-sm text-gray-400 leading-relaxed">
+     </Link>
+   
+
+            <p className="text-sm text-gray-400 leading-relaxed">
               Luxury handmade resin art crafted with care, faith, and elegance.
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
+          {/* QUICK LINKS */}
+          <div className="text-center md:text-left">
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Quick Links
             </h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/products">Shop</Link></li>
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
+              {[
+                { name: "Home", href: "/" },
+                { name: "Shop", href: "/products" },
+                { name: "About Us", href: "/about" },
+                { name: "Contact", href: "/contact" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className="transition hover:text-white"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Help */}
-          <div>
+          {/* HELP */}
+          <div className="text-center md:text-left">
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Help
             </h4>
             <ul className="space-y-3 text-sm">
-              <li><Link href="/shipping">Shipping & Delivery</Link></li>
-              <li><Link href="/returns">Return Policy</Link></li>
+              <li>
+                <Link
+                  href="/shiping"
+                  className="transition hover:text-white"
+                >
+                  Shipping & Delivery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/returns"
+                  className="transition hover:text-white"
+                >
+                  Return Policy
+                </Link>
+              </li>
               <li>
                 <button
                   onClick={onOpenPrivacy}
-                  className="hover:text-white transition"
+                  className="transition hover:text-white"
                 >
                   Privacy Policy
                 </button>
@@ -66,35 +97,46 @@ export default function Footer({ onOpenPrivacy }) {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
+          {/* CONTACT */}
+          <div className="text-center md:text-left">
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
               Contact
             </h4>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2">
+
+            <ul className="space-y-4 text-sm">
+              <li className="flex justify-center md:justify-start items-center gap-2">
                 <Mail size={16} />
-                souvenirbyFay@gmail.com
+                <span>souvenirbyFay@gmail.com</span>
               </li>
 
+              <li>
+                <a
+                  href="https://www.instagram.com/souvenirbyfay/"
+                  target="_blank"
+                  className="flex justify-center md:justify-start items-center gap-2 transition hover:text-white"
+                >
+                  <Instagram size={18} />
+                  souvenirbyFay
+                </a>
+              </li>
 
-
-              <li className="">
-
- <a href=" https://www.instagram.com/souvenirbyfay/" className="flex gap-2">
-
-    <Instagram size={18}  className="cursor-pointer "/>souvenirbyFay
-             
-             
-             </a>
+              <li>
+                <a
+                  href="https://www.tiktok.com/@souvenirbyfay"
+                  target="_blank"
+                  className="flex justify-center md:justify-start items-center gap-2 transition hover:text-white"
+                >
+                  <FaTiktok  size={18} />
+                  souvenirbyFay
+                </a>
               </li>
             </ul>
           </div>
-
         </div>
       </div>
 
-      <div className="border-t border-gray-800 py-6 text-center text-sm text-gray-500">
+      {/* BOTTOM BAR */}
+      <div className="border-t border-white/10 py-6 text-center text-xs sm:text-sm text-gray-500">
         © {new Date().getFullYear()} SouvenirbyFay Artistry. All rights reserved.
       </div>
     </footer>

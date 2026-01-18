@@ -16,7 +16,7 @@ export default function PrivacyPolicyModal({ open, onClose }) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
+    <div className="  fixed inset-0 z-[100] flex items-center justify-center">
 
       {/* BACKDROP */}
       <div
@@ -25,7 +25,7 @@ export default function PrivacyPolicyModal({ open, onClose }) {
       />
   <AnimatedHeading>
       {/* MODAL */}
-      <div className="relative bg-white w-[95%] md:w-[700px] max-h-[80vh] rounded-xl shadow-xl overflow-hidden">
+      <div className="relative bg-[#fcffff] w-[95%] md:w-[700px] max-h-[80vh] rounded-xl shadow-xl overflow-hidden">
 
         {/* HEADER */}
        

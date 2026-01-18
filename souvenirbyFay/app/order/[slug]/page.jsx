@@ -76,7 +76,7 @@ export default function OrderPage() {
                 handleMouseLeave();
               }}
               onClick={() => setShowImage(true)}
-              className="relative w-full aspect-square overflow-hidden rounded-3xl cursor-zoom-in bg-gray-100 shadow"
+              className="md:mt-17   relative w-full aspect-square overflow-hidden rounded-3xl cursor-zoom-in bg-gray-100 shadow"
             >
               <Image
                 src={

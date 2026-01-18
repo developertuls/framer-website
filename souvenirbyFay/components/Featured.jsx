@@ -10,6 +10,20 @@ import ProductsData from "@/productData/ProductsData";
 import AnimatedHeading from "./AnimatedHeading";
 import { motion } from "framer-motion";
 
+
+
+    
+      
+    
+
+
+
+
+
+
+
+
+
 export default function HomeCollections() {
   const wedding = ProductsData.filter(p => p.category === "wedding").slice(0, 6);
   const islamic = ProductsData.filter(p => p.category === "islamic").slice(0, 6);
@@ -55,6 +69,9 @@ function SectionHeading({ title1, title2 }) {
           <span>{title2}</span>
         </AnimatedHeading>
       </h2>
+
+
+     
     </div>
   );
 }

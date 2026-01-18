@@ -1,7 +1,7 @@
 
 export default function PolicyPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-20">
+    <div className="max-w-4xl mx-auto px-4 py-20   ">
       <h1 className="text-4xl font-serif mb-6">Policy</h1>
 
       <ul className="space-y-4 text-lg">

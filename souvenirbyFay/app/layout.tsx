@@ -11,6 +11,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { CurrencyProvider } from "@/context/CurrencyContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import ClientLayout from "@/components/ClientLayout";
+import { CartProvider } from "@/context/CartContext";
+
+
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +44,9 @@ export default function RootLayout({
       >
         <LanguageProvider>
           <CurrencyProvider>
+          <CartProvider>
             <ClientLayout>{children}</ClientLayout>
+            </CartProvider>
           </CurrencyProvider>
         </LanguageProvider>
       </body>
