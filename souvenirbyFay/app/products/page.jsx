@@ -1,6 +1,6 @@
 
 "use client";
-
+import { Suspense } from "react";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -35,6 +35,7 @@ export default function ProductsContent() {
   }, []);
 
   return (
+     <Suspense fallback={<div>Loading...</div>}>
     <>
       {/* 🔥 Pricing Gate */}
       <PricingGate
@@ -117,5 +118,6 @@ export default function ProductsContent() {
         </div>
       </section>
     </>
+    </Suspense>
   );
 }
