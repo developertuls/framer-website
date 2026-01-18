@@ -1,10 +1,6 @@
 
 "use client";
 
-
-
-export const dynamic = "force-dynamic";
-
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -14,7 +10,7 @@ import { motion } from "framer-motion";
 import ProductsData from "@/productData/ProductsData";
 import PricingGate from "../../components/PricingGate";
 
-export default function ProductsPage() {
+export default function ProductsContent() {
   const searchParams = useSearchParams();
   const category = searchParams.get("category");
   const focusSlug = searchParams.get("focus");
@@ -91,7 +87,6 @@ export default function ProductsPage() {
                     hover:shadow-xl
                   "
                 >
-                  {/* Image */}
                   <Image
                     src={product.image}
                     alt={product.title}
@@ -104,7 +99,6 @@ export default function ProductsPage() {
                     "
                   />
 
-                  {/* Hover overlay */}
                   <div className="
                     absolute inset-0
                     bg-black/10 opacity-0
@@ -113,7 +107,6 @@ export default function ProductsPage() {
                   " />
                 </motion.div>
 
-                {/* Title */}
                 <p className="mt-4 text-center text-sm sm:text-base font-medium text-gray-800">
                   {product.title}
                 </p>
