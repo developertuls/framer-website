@@ -9,12 +9,6 @@ import CurrencySelector from "@/components/CurrencySelector";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 
-
-
-
-
-
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { t } = useLanguage();
@@ -23,7 +17,7 @@ export default function Navbar() {
   const navClass = (path) =>
     `transition hover:opacity-70 ${
       pathname === path
-        ? "text-[#B53471] font-semibold "
+        ? "text-[#B53471] font-semibold"
         : "text-gray-800"
     }`;
 
@@ -34,8 +28,8 @@ export default function Navbar() {
         {/* LOGO */}
         <Link href="/" className="flex items-center animate-pulse">
           <Image
-            src="/fatimalogo.avif"
-            alt="Fatima Artistry"
+            src="/sou.avif"
+            alt="sovenirbyFay"
             width={120}
             height={40}
             priority
@@ -44,11 +38,10 @@ export default function Navbar() {
 
         {/* DESKTOP NAV */}
         <nav className="hidden lg:flex items-center gap-8 text-[16px] font-light">
-          <Link href="/" className={navClass("/") } >{t("Home" )}</Link>
+          <Link href="/" className={navClass("/")}>{t("Home")}</Link>
           <Link href="/products" className={navClass("/products")}>{t("Products")}</Link>
           <Link href="/about" className={navClass("/about")}>{t("About Us")}</Link>
           <Link href="/contact" className={navClass("/contact")}>{t("Contact")}</Link>
-          {/* <Link href="/faq" className={navClass("/faq")}>{t("FAQ")}</Link> */}
         </nav>
 
         {/* RIGHT */}
@@ -64,7 +57,7 @@ export default function Navbar() {
                   : "border border-gray-400 text-gray-800 hover:bg-[#080249] hover:text-white"
               }`}
           >
-            {t("CustomOrder ")}
+            {t("CustomOrder")}
           </Link>
 
           {/* Currency & Language */}
@@ -77,10 +70,10 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* MOBILE */}
+          {/* MOBILE BUTTON */}
           <button
-            onClick={() => setOpen(!open)}
-            className="lg:hidden text-2xl"
+            onClick={() => setOpen(true)}
+            className="lg:hidden rounded-full border px-4 py-2 text-xl"
           >
             ☰
           </button>
@@ -88,51 +81,89 @@ export default function Navbar() {
       </div>
 
       {/* MOBILE MENU */}
-      {open && (
-        <div className="lg:hidden bg-white border-t shadow-xl">
-          <nav className="flex flex-col gap-5 px-6 py-6">
+      <div
+        className={`lg:hidden fixed inset-0 z-[999] transition-all duration-300 ${
+          open ? "visible" : "invisible"
+        }`}
+      >
+        {/* OVERLAY */}
+        <div
+          onClick={() => setOpen(false)}
+          className={`absolute inset-0 bg-black/40 z-0  transition-opacity  duration-300 ${
+            open ? "opacity-100" : "opacity-0"
+          }`}
+        />
 
+        {/* PANEL */}
+        <div
+          className={`absolute top-0 right-0  z-10 h-full w-[80%] max-w-sm bg-white shadow-2xl
+          transform transition-transform duration-300 ease-in-out
+          ${open ? "translate-x-0" : "translate-x-full"}`}
+        >
+          {/* HEADER */}
+       <div className="flex items-center justify-between px-6 py-4 border-b">
+  {/* LOGO */}
+  <div className="flex items-center">
+    <Image
+      src="/sou.avif"
+      alt="Souvenir by Fay"
+      width={110}
+      height={36}
+      priority
+      className="object-contain"
+    />
+  </div>
+
+  {/* CLOSE BUTTON */}
+  <button
+    onClick={() => setOpen(false)}
+    className="text-3xl font-bold text-gray-700 hover:opacity-70 transition"
+    aria-label="Close menu"
+  >
+    ×
+  </button>
+</div>
+
+
+          {/* LINKS */}
+          <nav className="flex flex-col gap-6 px-6 py-8 text-lg font-semibold rounded-md bg-[#fcffff] text-center">
             {[
-              { name: "Home", href: "/" },
-              { name: "Products", href: "/products" },
-              { name: "About", href: "/about" },
-              { name: "Contact", href: "/contact" },
-              { name: "FAQ", href: "/faq" },
-            ].map(link => (
+              { name: t("Home"), href: "/" },
+              { name: t("Products"), href: "/products" },
+              { name: t("About Us"), href: "/about" },
+              { name: t("Contact"), href: "/contact" },
+            ].map((link) => (
               <Link
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className={`text-lg ${
+                className={`transition ${
                   pathname === link.href
-                    ? "text-[#e11840] font-semibold"
-                    : "text-[red]"
+                    ? "text-[#B53471] font-semibold"
+                    : "text-gray-800 hover:text-[#080249]"
                 }`}
               >
                 {link.name}
               </Link>
             ))}
 
+            {/* CTA */}
             <Link
               href="/custom-order"
               onClick={() => setOpen(false)}
-              className={`mt-4 rounded-xl px-4 py-3 text-center text-lg
-                ${
-                  pathname === "/custom-order"
-                    ? "bg-[#080249] text-white"
-                    : "bg-black text-white"
-                }`}
+              className="mt-4 rounded-full bg-[#080249] px-6 py-3 text-center text-white font-medium shadow-md"
             >
-              {t("customOrder")}
+              {t("CustomOrder")}
             </Link>
 
-            <div className="mt-4 flex gap-3">
+            {/* Currency & Language */}
+            <div className="mt-6 flex gap-3 mx-auto">
               <CurrencySelector />
               <LanguageSwitcher />
             </div>
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 }

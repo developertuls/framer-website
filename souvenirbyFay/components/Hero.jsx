@@ -109,13 +109,29 @@ export default function HeroSlider() {
            Timeless, handcrafted pieces made with love for any occasion, whether you'd like to capture a memory or just decorate your home!
           </p>
 
-          <Link
-            href="/products"
-            className="inline-block mt-6  rounded-full bg-white px-8 py-3
-                       text-xl font-semibold text-gray-900 hover:bg-gray-200 transition"
-          >
-            shop now
-          </Link>
+        <div className="mt-6 flex justify-center md:justify-start">
+  <Link
+    href="/products"
+    className="
+      inline-flex items-center justify-center
+      w-full max-w-xs
+      md:w-auto
+      rounded-full
+      bg-white/80
+      px-8 py-3
+      text-base md:text-lg
+      font-semibold
+      text-gray-900
+      shadow-md
+      transition
+      hover:bg-[#f6fafb]
+      active:scale-95
+    "
+  >
+    Shop Now
+  </Link>
+</div>
+
         </motion.div>
       </div>
 
