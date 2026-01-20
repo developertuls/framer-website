@@ -9,6 +9,11 @@ import CurrencySelector from "@/components/CurrencySelector";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
 
+
+
+
+
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { t } = useLanguage();
@@ -26,20 +31,22 @@ export default function Navbar() {
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
 
         {/* LOGO */}
-        <Link href="/" className="flex items-center animate-pulse">
-          <Image
-            src="/sou.avif"
-            alt="sovenirbyFay"
-            width={120}
-            height={40}
-            priority
-          />
+        <Link href="/" className="flex items-center ">
+        <Image
+  src="/sv.png"
+  alt="sovenirbyFay"
+  width={300}
+  height={100}
+  priority
+  className="h-[96px] w-auto"
+/>
+
         </Link>
 
         {/* DESKTOP NAV */}
         <nav className="hidden lg:flex items-center gap-8 text-[16px] font-light">
           <Link href="/" className={navClass("/")}>{t("Home")}</Link>
-          <Link href="/products" className={navClass("/products")}>{t("Products")}</Link>
+          <Link href="/products" className={navClass("/products")}>{t("Collections")}</Link>
           <Link href="/about" className={navClass("/about")}>{t("About Us")}</Link>
           <Link href="/contact" className={navClass("/contact")}>{t("Contact")}</Link>
         </nav>
@@ -47,24 +54,40 @@ export default function Navbar() {
         {/* RIGHT */}
         <div className="flex items-center gap-3">
 
-          {/* CUSTOM ORDER CTA */}
-          <Link
-            href="/custom-order"
-            className={`hidden md:inline-flex rounded-full px-6 py-2 text-sm font-medium transition
-              ${
-                pathname === "/custom-order"
-                  ? "bg-[#080249] text-white"
-                  : "border border-gray-400 text-gray-800 hover:bg-[#080249] hover:text-white"
-              }`}
-          >
-            {t("CustomOrder")}
-          </Link>
-
-          {/* Currency & Language */}
-          <div className="hidden md:flex items-center gap-2">
-            <div className="rounded-full ring-2 ring-[#080249]/30">
+<div className="hidden md:flex items-center gap-2">
+            <div className="rounded-full  ring-[#080249]/30">
               <CurrencySelector />
             </div>
+               {/* vertical line */}
+              <span className="h-4 w-px bg-gray-400 mx-1" />
+
+
+
+
+
+
+
+
+          {/* CUSTOM ORDER CTA */}
+          <div className={` text-black hover:text-white gap-0.5   ${
+                pathname === "/custom-order"
+                  ? "bg-[#080249] text-white"
+                  : "  "
+              }  hover:bg-[#080249]  flex border border-gray-400 py-2 px-3 rounded-full items-center`}>
+          <Link
+            href="/custom-order"
+            className={`  hidden md:inline-flex items-center    text-sm font-medium transition
+             `}
+          >
+            {t("CustomOrder")}
+           
+          </Link>
+          <br />
+          <span className="font-bold md:mt-[-6]">...</span>
+         
+</div>
+          {/* Currency & Language */}
+          
             <div className="rounded-full ring-2 ring-[#080249]/30">
               <LanguageSwitcher />
             </div>

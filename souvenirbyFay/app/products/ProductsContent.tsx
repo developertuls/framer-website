@@ -35,7 +35,7 @@ export default function ProductsContent() {
     <>
       <PricingGate open={openPricing} onClose={() => setOpenPricing(false)} />
 
-      <section className="mt-24 px-4 sm:px-6 lg:px-8">
+      <section className="mt-24 px-4 sm:px-6 lg:px-8 md:mb-4 mb-3 shadow-md p-5">
         <div className="mx-auto max-w-7xl">
 
           <div className="mb-14 text-center">
