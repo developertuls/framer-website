@@ -19,66 +19,40 @@ export default function OrderForm({ product, mode = "product" }) {
   const [glassBox, setGlassBox] = useState("with");
   const [customText, setCustomText] = useState("");
   const [specialRequest, setSpecialRequest] = useState("");
+  const [email, setEmail] = useState("");
   const [selectedSize, setSelectedSize] = useState(null);
 
-  // ===============================
-  // EMAIL SEND
-  // ===============================
-  const sendEmail = (data) => {
-    return emailjs.send(
-      "service_1fm3irh",
-      "template_dvpznqq",
-      data,
-      "V5UV5l4V0Soqp-qYd"
-    );
-  };
+  
 
   // ===============================
   // SUBMIT
   // ===============================
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+ const handleSubmit = (e) => {
+  e.preventDefault();
 
-    if (!selectedSize) {
-      alert("Please select a size");
-      return;
-    }
+  if (!selectedSize) {
+    alert("Please select a size");
+    return;
+  }
 
-    const form = e.target;
+  addToCart({
+    id: Date.now(),
+    type: mode,
+    title: product?.title || "Custom Order",
+    image: mode === "product" ? product?.image : null,
+    size: selectedSize,
+    glassBox,
+    quantity,
+    customText,
+    specialRequest,
+    email,
+    // phone,
+    // FullName,
+  });
 
-    const orderData = {
-      name: form.name.value,
-      email: form.email.value,
-      phone: form.phone.value,
-      product: product?.title || "Custom Order",
-      quantity,
-      size: selectedSize,
-      glassBox,
-      customText,
-      specialRequest,
-    };
+  router.push("/cart");
+};
 
-    try {
-      await sendEmail(orderData);
-
-      addToCart({
-        id: Date.now(),
-        type: mode,
-        title: orderData.product,
-        image: mode === "product" ? product?.image : null,
-        size: selectedSize,
-        glassBox,
-        quantity,
-        customText,
-        specialRequest,
-      });
-
-      router.push("/cart");
-    } catch (error) {
-      console.log("EMAIL JS ERROR 👉", error);
-      alert("Order failed. Please try again.");
-    }
-  };
 
   return (
     <form
@@ -193,6 +167,8 @@ export default function OrderForm({ product, mode = "product" }) {
             className="w-full rounded-2xl border bg-gray-50 p-4 text-sm focus:ring-2 focus:ring-[#336a68] outline-none"
           />
           <input
+           value={email}
+          onChange={(e) => setEmail(e.target.value)}
             name="email"
             type="email"
             placeholder="Email"

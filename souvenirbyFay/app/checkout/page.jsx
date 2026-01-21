@@ -7,8 +7,46 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+// import emailjs from "@emailjs/browser";
+
+
+
+
 
 export default function CheckoutPage() {
+
+
+
+
+
+  // const sendEmail = (data) => {
+  //   return emailjs.send(
+  //     "service_1fm3irh",
+  //     "template_dvpznqq",
+  //     data,
+  //     "V5UV5l4V0Soqp-qYd"
+  //   );
+  // };
+
+
+
+
+
+
+
+
+const handleChange = (e) => {
+  setForm({
+    ...form,
+    [e.target.name]: e.target.value,
+  });
+};
+
+
+
+
+
+  
   const { cartItems } = useCart();
   const router = useRouter();
 
@@ -17,26 +55,79 @@ export default function CheckoutPage() {
     email: "",
     phone: "",
     address: "",
+    glassBox: "",
   });
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+ 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
 
-    const orderData = {
-      customer: form,
-      items: cartItems,
-    };
 
-    console.log("FINAL ORDER 👉", orderData);
 
-    setTimeout(() => {
-      router.push("/order-success");
-    }, 1200);
-  };
+const handleProceedToPayment = (e) => {
+  e.preventDefault();
+
+  // ✅ save ONLY customer info
+  localStorage.setItem(
+    "checkoutForm",
+    JSON.stringify(form)
+  );
+
+  router.push("/payment");
+};
+
+
+
+
+
+
+
+
+
+
+
+
+  // agercode 
+
+//   const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   const firstItem = cartItems[0];
+
+//   const templateParams = {
+//     name: form.name,
+//     email: form.email,
+//     phone: form.phone,
+//     address: form.address,
+//     product: firstItem?.title || "Custom Order",
+//     quantity: firstItem?.quantity || 1,
+//     size: firstItem?.size || "N/A",
+//     customText: firstItem?.customText || "",
+//     specialRequest: firstItem?. specialRequest ||"",
+//   };
+
+//   try {
+//     await emailjs.send(
+//       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+//       process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+//       templateParams,
+//       process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+//     );
+
+//     router.push("/order-success");
+//   } catch (error) {
+//     console.error("Email failed:", error);
+//     alert("Order failed");
+//   }
+// };
+
+
+
+
+
+
+
+
+
 
   if (cartItems.length === 0) {
     return (
@@ -46,6 +137,9 @@ export default function CheckoutPage() {
     );
   }
 
+
+
+    // router.push("/order-success");
   return (
     <section className="px-4 py-24 bg-[#fcffff]">
       {/* HEADER */}
@@ -117,11 +211,11 @@ export default function CheckoutPage() {
 
         {/* RIGHT – CUSTOMER FORM */}
         <motion.form
-          onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-white rounded-3xl shadow-2xl p-6 sm:p-10 space-y-8"
+           onSubmit={handleProceedToPayment}
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  className="bg-white rounded-3xl shadow-2xl p-6 sm:p-10 space-y-8"
         >
           {/* NAME + EMAIL */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -189,9 +283,10 @@ export default function CheckoutPage() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
             type="submit"
+             
             className="w-full rounded-full bg-[#0f766e] py-4 text-white text-lg font-medium"
           >
-            Submit Order
+          Proceed to Payment
           </motion.button>
 
           <p className="text-xs text-gray-500 text-center">

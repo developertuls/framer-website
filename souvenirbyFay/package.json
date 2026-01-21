@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@emailjs/nodejs": "^5.0.2",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.24.10",
     "lucide-react": "^0.562.0",

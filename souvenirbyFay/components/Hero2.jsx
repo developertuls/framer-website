@@ -1,26 +1,35 @@
+
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative h-[90vh] w-full overflow-hidden">
+    <section className="relative h-[90vh] w-full overflow-hidden ">
       {/* Background Image */}
       <Image
         src="/hero-2.jpeg"
         alt="Handcrafted Resin Art"
         fill
         priority
-        className="object-cover"
+        className=" 
+        
+         object-cover
+    object-[center_70%]
+    md:object-[center_60%]
+    lg:object-[center_55%]
+    md:mt-12
+        
+        "
       />
 
       {/* Dark Gradient Overlay */}
-      <div className="  absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r     from-black/60 via-black/30 to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 flex h-full items-center">
         <div className="container mx-auto px-6">
           <div className="max-w-xl text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-5xl font-serif leading-tight">
               Handcrafted Resin Art
             </h1>
 

@@ -1,56 +1,54 @@
 
-
 "use client";
 
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
-export default function OrderSuccessPage() {
+export default function OrderSuccess() {
+  const emailSentRef = useRef(false);
+
+  useEffect(() => {
+    if (emailSentRef.current) return;
+    emailSentRef.current = true;
+
+    const orderData = JSON.parse(localStorage.getItem("orderData"));
+    if (!orderData) return;
+
+    const { customer, product } = orderData;
+
+    const templateParams = {
+      // 👤 Customer Info
+      name: customer?.name || "N/A",
+      email: customer?.email || "N/A",
+      phone: customer?.phone || "N/A",
+      address: customer?.address || "N/A",
+      glassBox: customer?.glassBox || "N/A",
+
+      // 📦 Product Info
+      product: product?.title || "Custom Order",
+      quantity: product?.quantity || 1,
+      size: product?.size || "N/A",
+      customText: product?.customText || "",
+      specialRequest: product?.specialRequest || "",
+    };
+
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => console.log("✅ Email sent"))
+      .catch((err) => console.error("❌ EmailJS error:", err));
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="max-w-md w-full bg-white rounded-3xl shadow-xl p-8 text-center space-y-6"
-      >
-        {/* ICON */}
-        <div className="mx-auto w-20 h-20 rounded-full bg-green-100 flex items-center justify-center">
-          <span className="text-4xl">✅</span>
-        </div>
-
-        {/* TITLE */}
-        <h1 className="text-2xl font-semibold text-gray-800">
-          Order Confirmed!
-        </h1>
-
-        {/* MESSAGE */}
-        <p className="text-gray-600 text-sm">
-          Thank you for your order.  
-          We have received your request and sent a confirmation email.
-        </p>
-
-        <p className="text-xs text-gray-500">
-          Our team will contact you soon for further details.
-        </p>
-
-        {/* BUTTONS */}
-        <div className="flex flex-col gap-3 pt-4">
-          <Link
-            href="/"
-            className="w-full rounded-xl bg-[#336a68] py-3 text-white font-medium hover:bg-[#4e9492] transition"
-          >
-            Back to Home
-          </Link>
-
-          <Link
-            href="/cart"
-            className="w-full rounded-xl border py-3 text-gray-700 hover:bg-gray-100 transition"
-          >
-            View Cart
-          </Link>
-        </div>
-      </motion.div>
+    <div className="text-center py-32">
+      <h1 className="text-3xl font-bold text-green-600">
+        Payment Successful 🎉
+      </h1>
+      <p className="mt-4">Your order has been confirmed.</p>
     </div>
   );
 }
