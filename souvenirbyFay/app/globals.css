@@ -123,3 +123,24 @@ body {
 
 
 
+
+.input-ui {
+  @apply w-full rounded-xl border border-gray-300 px-4 py-3 text-sm
+  focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500
+  transition bg-white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}

@@ -1,54 +1,58 @@
 
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 export default function OrderSuccess() {
-  const emailSentRef = useRef(false);
-
   useEffect(() => {
-    if (emailSentRef.current) return;
-    emailSentRef.current = true;
+    const order = JSON.parse(localStorage.getItem("orderPayload"));
+    if (!order) return;
 
-    const orderData = JSON.parse(localStorage.getItem("orderData"));
-    if (!orderData) return;
+    const { customer, items, payment } = order;
 
-    const { customer, product } = orderData;
+    // 🔴 ADMIN EMAIL (FULL)
+    emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE_ID,
+      {
+        name: customer.name,
+        email: customer.email,
+        phone: customer.phone,
+        address: customer.address,
+        products: items
+          .map((i) => `${i.title} x${i.quantity}`)
+          .join(", "),
+        paymentMethod: payment.method,
+        transactionId: payment.transactionId,
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    );
 
-    const templateParams = {
-      // 👤 Customer Info
-      name: customer?.name || "N/A",
-      email: customer?.email || "N/A",
-      phone: customer?.phone || "N/A",
-      address: customer?.address || "N/A",
-      glassBox: customer?.glassBox || "N/A",
+    // 🟢 USER EMAIL (SHORT)
+    emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+      process.env.NEXT_PUBLIC_EMAILJS_USER_TEMPLATE_ID,
+      {
+        name: customer.name,
+        email: customer.email,
+        products: items.map((i) => i.title).join(", "),
+        date: new Date().toLocaleDateString(),
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    );
 
-      // 📦 Product Info
-      product: product?.title || "Custom Order",
-      quantity: product?.quantity || 1,
-      size: product?.size || "N/A",
-      customText: product?.customText || "",
-      specialRequest: product?.specialRequest || "",
-    };
-
-    emailjs
-      .send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        templateParams,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      )
-      .then(() => console.log("✅ Email sent"))
-      .catch((err) => console.error("❌ EmailJS error:", err));
+    localStorage.removeItem("orderPayload");
   }, []);
 
   return (
     <div className="text-center py-32">
       <h1 className="text-3xl font-bold text-green-600">
-        Payment Successful 🎉
+        Order Successful 🎉
       </h1>
-      <p className="mt-4">Your order has been confirmed.</p>
+      <p className="mt-4">
+        Payment received. Order details sent to your email.
+      </p>
     </div>
   );
 }

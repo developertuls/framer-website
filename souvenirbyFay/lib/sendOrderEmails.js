@@ -1,0 +1,50 @@
+
+import emailjs from "emailjs-com";
+
+export const sendOrderEmails = async (orderPayload) => {
+  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+  const adminTemplate = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE;
+  const userTemplate = process.env.NEXT_PUBLIC_EMAILJS_USER_TEMPLATE;
+
+  // 🧾 items list (FIXED: item.title)
+  const itemsText = orderPayload.items
+    .map(
+      (item, index) =>
+        `${index + 1}. ${item.title} × ${item.quantity}`
+    )
+    .join("\n");
+
+  const templateParams = {
+    customer_name: orderPayload.customer.name,
+    customer_email: orderPayload.customer.email,
+    customer_phone: orderPayload.customer.phone,
+    customer_address: orderPayload.customer.address,
+
+    email: orderPayload.customer.email, // user template এর জন্য
+
+    order_items: itemsText,
+    payment_method: orderPayload.payment.method,
+    payment_status: orderPayload.payment.status,
+    order_date: new Date(
+      orderPayload.createdAt
+    ).toLocaleDateString(),
+  };
+
+  // 📧 Admin Email (FULL DETAILS)
+  await emailjs.send(
+    serviceId,
+    adminTemplate,
+    templateParams,
+    publicKey
+  );
+
+  // 📧 User Email (SHORT SUMMARY)
+  await emailjs.send(
+    serviceId,
+    userTemplate,
+    templateParams,
+    publicKey
+  );
+};

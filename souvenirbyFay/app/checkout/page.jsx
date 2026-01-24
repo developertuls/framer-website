@@ -19,14 +19,6 @@ export default function CheckoutPage() {
 
 
 
-  // const sendEmail = (data) => {
-  //   return emailjs.send(
-  //     "service_1fm3irh",
-  //     "template_dvpznqq",
-  //     data,
-  //     "V5UV5l4V0Soqp-qYd"
-  //   );
-  // };
 
 
 
@@ -55,25 +47,37 @@ const handleChange = (e) => {
     email: "",
     phone: "",
     address: "",
-    glassBox: "",
+  
   });
 
  
 
 
 
-
 const handleProceedToPayment = (e) => {
   e.preventDefault();
 
-  // ✅ save ONLY customer info
-  localStorage.setItem(
-    "checkoutForm",
-    JSON.stringify(form)
-  );
+  const orderPayload = {
+    customer: {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      address: form.address,
+    },
+    items: cartItems,
+    payment: {
+      method: null,
+      status: "pending",
+      transactionId: null,
+    },
+    createdAt: new Date().toISOString(),
+  };
+
+  localStorage.setItem("orderPayload", JSON.stringify(orderPayload));
 
   router.push("/payment");
 };
+
 
 
 
@@ -113,7 +117,6 @@ const handleProceedToPayment = (e) => {
 //       process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
 //     );
 
-//     router.push("/order-success");
 //   } catch (error) {
 //     console.error("Email failed:", error);
 //     alert("Order failed");
