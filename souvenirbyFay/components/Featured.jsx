@@ -23,62 +23,58 @@ import { motion } from "framer-motion";
 
 
 
-
 export default function HomeCollections() {
   const wedding = ProductsData.filter(p => p.category === "wedding").slice(0, 6);
   const islamic = ProductsData.filter(p => p.category === "islamic").slice(0, 6);
 
   return (
-    <div className="space-y-24 px-4 md:px-10">
+    <div className="space-y-32 craft-product-sections">
 
-      {/* ===== WEDDING COLLECTION ===== */}
-      <SectionHeading title1="Wedding" title2="Collection" />
-
-      <CollectionGrid
-        items={wedding}
-        category="wedding"
+      {/* ===== WEDDING ===== */}
+      <SectionHeading
+        title="Wedding Collection"
+        subtitle="Made to celebrate love & new beginnings"
       />
 
-      {/* ===== ISLAMIC COLLECTION ===== */}
-      <SectionHeading title1="Islamic" title2="Collection" />
+      <CollectionGrid items={wedding} category="wedding" />
 
-      <CollectionGrid
-        items={islamic}
-        category="islamic"
+      {/* ===== ISLAMIC ===== */}
+      <SectionHeading
+        title="Islamic Collection"
+        subtitle="Handmade with islamic elegance & devotion"
       />
+
+      <CollectionGrid items={islamic} category="islamic" />
     </div>
   );
 }
+
 
 /* ================== Reusable Components ================== */
 
-function SectionHeading({ title1, title2 }) {
+function SectionHeading({ title, subtitle }) {
   return (
-    <div className="bgred  flex justify-center py-12">
-      <h2
-        className="bg-white px-6 py-4 text-center
-        text-3xl md:text-5xl font-bold
-        flex gap-2 shadow-xl -translate-y-6  rounded-full mt-9"
-        
-        style={{ textShadow: "0 6px 18px rgba(0,0,0,0.25)" }}
-      >
-        <AnimatedHeading direction="left">
-          <span className="">{title1}</span>
-        </AnimatedHeading>
-        <AnimatedHeading direction="right">
-          <span>{title2}</span>
-        </AnimatedHeading>
-      </h2>
+    <div className="relative py-14 md:py-16 text-center ">
+      <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-white/40 pointer-events-none" />
 
+      <div className="relative z-10">
+        <h2 className=" font-bold text-3xl md:text-4xl lg:text-5xl text-[#0a313a] mb-2">
+          {title}
+        </h2>
 
-     
+        <p className="text-sm md:text-base text-[#585349]">
+          {subtitle}
+        </p>
+      </div>
     </div>
   );
 }
 
+
+
 function CollectionGrid({ items, category }) {
   return (
-    <div className=" md:mt-[-100px] md:p-9 md:mb-9 md:shadow-xl  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div className=" md:mt-[-100px] md:p-9 md:mb-5  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {items.map(item => (
         <Link
           key={item.id}
@@ -89,26 +85,23 @@ function CollectionGrid({ items, category }) {
 
         >
            
-          <motion.div className="overflow-hidden rounded-xl shadow-md"
-            initial={{ y: -60, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-          
-          
-          
-          >
-          
-            <Image
-              src={item.image}
-              alt={item.title}
-              width={500}
-              height={500}
-              className=" animate-slideInLeft   w-full h-[280px] object-cover
-              transition-transform duration-500 group-hover:scale-110"
-            />
-           
-          </motion.div>
+         <motion.div
+  className="overflow-hidden rounded-xl shadow-md"
+  initial={{ y: -60, opacity: 0 }}
+  whileInView={{ y: 0, opacity: 1 }}
+  viewport={{ once: true, amount: 0.3 }}
+  transition={{ duration: 0.7, ease: 'easeOut' }}
+>
+  <div className="relative w-full aspect-[4/3]">
+    <Image
+      src={item.image}
+      alt={item.title}
+      fill
+      className="object-cover transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
+</motion.div>
+
        
         </Link>
       ))}

@@ -51,8 +51,8 @@ export default function ShippingPage() {
             title="Shipping Time"
             en={
               <>
-                • Inside Bangladesh: 2–4 business days <br />
-                • International Orders: 7–14 business days
+                • International orders: 7–14 days (depending on location)  <br />
+                • Within the US: 3–5 days
               </>
             }
         
@@ -77,7 +77,7 @@ export default function ShippingPage() {
           {/* Tracking */}
           <InfoCard
             title="Order Tracking"
-            en="Once your order is shipped, you will receive a tracking number via email or WhatsApp."
+            en="Once your order is shipped, you will receive a tracking number via email ."
        
           />
 
