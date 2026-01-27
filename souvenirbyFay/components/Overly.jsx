@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function OurCraft() {
   return (
-    <section className="w-full bg-[#f7f5f1] py-32 overflow-hidden">
+    <section className="w-full   craft-overly  py-32 overflow-hidden">
       
       {/* Outer container */}
       <div className="max-w-[1440px] mx-auto px-8">
@@ -21,7 +21,7 @@ export default function OurCraft() {
           }}
           className="mx-auto
                      max-w-6xl
-                     bg-[#fff]
+                     bg-[#fff]/60
                      rounded-3xl
                      shadow-2xl
                      px-16 py-20"
@@ -34,15 +34,21 @@ export default function OurCraft() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.8 }}
-              className="flex justify-center md:justify-start"
+              className="  flex justify-center md:justify-start"
             >
-              <div className="relative w-[320px] lg:w-[360px] aspect-square rounded-2xl overflow-hidden">
-                <img
-                  src="/s3.png"
-                  alt="Our Craft"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
+              <motion.div
+  initial={{ opacity: 0, x: -80 }}  
+  whileInView={{ opacity: 1, x: 0 }} 
+  viewport={{ once: true, amount: 0.3 }} 
+  transition={{ duration: 0.7, ease: "easeOut" }}
+  className="  md:ml-9  relative w-[320px] lg:w-[360px] aspect-square rounded-2xl overflow-hidden"
+>
+  <img
+    src="/s3.png"
+    alt="Our Craft"
+    className=" absolute shadow-2xl inset-0 w-full h-full object-cover"
+  />
+</motion.div>
             </motion.div>
 
             {/* Content */}
@@ -51,6 +57,7 @@ export default function OurCraft() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.35, duration: 0.8 }}
+              className=""
             >
               <span className="text-xs tracking-[0.4em] text-[#b7a38a] uppercase block mb-6">
               OUR WORK
@@ -60,7 +67,7 @@ export default function OurCraft() {
                What we like to do <br /> best at
               </h2>
 
-              <p className="text-gray-600 leading-relaxed text-justify hyphens-auto max-w-lg mb-6">
+              <p className="text-gray-600   leading-relaxed text-justify hyphens-auto max-w-lg mb-6">
               Crafted with gentle hands and heartfelt devotion, our collections are adorned with the beautiful names of Almighty Allah, verses from the Quran, and Hadith. These timeless pieces bring a sense of peace, spirituality and barakah into your home, shop, or any space.
 
 In addition, for blessed occasions such as weddings and nikahs, our creations serve as a unique and meaningful gift—preserving the cherished memories of the beginning of a beautiful and barakah-filled new journey for both bride and groom.

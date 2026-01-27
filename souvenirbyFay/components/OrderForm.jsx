@@ -63,7 +63,7 @@ export default function OrderForm({ product, mode = "product" }) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-3xl bg-[#fcffff] rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 space-y-8"
+        className="w-full max-w-3xl bg-[#fcffff]/60 rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 space-y-8"
       >
         {/* TITLE */}
         {mode === "product" && product?.title && (

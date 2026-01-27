@@ -26,6 +26,7 @@ font-family: "DM Serif Display", serif;
 body {
 
   font-family: Arial, Helvetica, sans-serif;
+  color: #0a313a;
 }
 
 
@@ -156,6 +157,16 @@ body {
   padding: 80px 20px;
 }
 
+.craft-overly {
+  background: url("/ww.jpg") center/cover no-repeat;
+  padding: 80px 20px;
+}
+
+.craft-overly-about {
+  background: url("/fu-9.jpeg") center/cover no-repeat;
+  padding: 8px 20px;
+}
+
 .craft-card {
  max-width: 1100px;
   /* height: 600px;  */
@@ -202,3 +213,15 @@ body {
   color: #8b6b4a;
   text-decoration: none;
 }
+
+
+.animatee{
+ 
+ transform:scale(20deg);
+  transition: 0.5s;
+ 
+
+
+
+}
+

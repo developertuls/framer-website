@@ -7,16 +7,11 @@ import { motion } from "framer-motion";
 export default function AboutPage() {
   return (
     <section
-      className="relative bg-[#040619] text-white md:mt-5 bg-cover bg-contain"
-      style={{
-        backgroundImage:
-          "url('https://instagram.fdac198-1.fna.fbcdn.net/v/t51.75761-15/500610848_17905822713160224_8723773257493019486_n.jpg?stp=dst-jpegr_e35_tt6&_nc_cat=104&ig_cache_key=MzY0MTIwMDY5Mzc0NzA1NTI3OQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTQ0MC5oZHIuQzMifQ%3D%3D&_nc_ohc=2vAVc51LgXkQ7kNvwFsz91W&_nc_oc=Adl4NLlyeK9c66_JfGFZcit4Lz8K21yIxwe8DO544SQjOoiaEBBfWKc52oAgSAqQIgo&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fdac198-1.fna&_nc_gid=RZmbYjZOpYPkksXklOJvfQ&oh=00_AfpvZAkawe-JwnpXq8X3LQNzoOTtKzmnCct9w-HhHrLufg&oe=697113FA')",
-        backgroundSize: "bg-cover",
-        backgroundPosition: "bg-Content",
-      }}
+      className="craft-overly-about  relative bg-[#040619] text-white md:mt-5 bg-cover bg-contain"
+    
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/55" />
+      <div className="absolute inset-0 bg-black/70" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 md:px-10 py-20">
 

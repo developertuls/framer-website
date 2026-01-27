@@ -57,7 +57,7 @@ const ProductsData = [
     title: " Wedding Tray 6",
     slug: "7",
     category: "wedding",
-    image: "/w1.jpg",
+    image: "/fu-6.jpeg",
    
   },
 

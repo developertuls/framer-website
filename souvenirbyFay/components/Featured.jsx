@@ -55,7 +55,7 @@ export default function HomeCollections() {
 function SectionHeading({ title, subtitle }) {
   return (
     <div className="relative py-14 md:py-16 text-center ">
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-white/40 pointer-events-none" />
+      <div className="absolute inset-0  rounded-md  pointer-events-none" />
 
       <div className="relative z-10">
         <h2 className=" font-bold text-3xl md:text-4xl lg:text-5xl text-[#0a313a] mb-2">

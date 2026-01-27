@@ -44,7 +44,7 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="bg-[#fcffff] py-14 sm:py-20">
+    <section className="bg-[#fcffff] craft-overly md:mt-9 mt-10 py-14 sm:py-20">
       <div className="max-w-3xl mx-auto px-4">
 
         {/* Title */}
@@ -80,7 +80,7 @@ export default function ContactPage() {
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="space-y-6 bg-white p-6 sm:p-10 rounded-3xl shadow-lg"
+          className="space-y-6 bg-white/40 p-6 sm:p-10 rounded-3xl shadow-lg"
         >
           {/* Name + Email */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -91,7 +91,7 @@ export default function ContactPage() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full rounded-xl bg-gray-100 px-4 py-3
+              className="w-full rounded-xl bg-[#fff] px-4 py-3
               focus:outline-none focus:ring-2 focus:ring-[#0a6562]"
             />
 
@@ -102,7 +102,7 @@ export default function ContactPage() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full rounded-xl bg-gray-100 px-4 py-3
+              className="w-full rounded-xl bg-[#fff]  px-4 py-3
               focus:outline-none focus:ring-2 focus:ring-[#0a6562]"
             />
           </div>
@@ -115,7 +115,7 @@ export default function ContactPage() {
             value={formData.message}
             onChange={handleChange}
             required
-            className="w-full rounded-xl bg-gray-100 px-4 py-3 resize-none
+            className="w-full rounded-xl bg-[#fff]  px-4 py-3 resize-none
             focus:outline-none focus:ring-2 focus:ring-[#0a6562]"
           />
 

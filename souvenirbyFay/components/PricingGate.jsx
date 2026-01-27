@@ -33,6 +33,7 @@ export default  function PricingGate({ open, onClose }) {
     rounded-b-3xl bg-[#0a0a1e]
     px-5 py-6 sm:p-8
     shadow-2xl 
+  
   "
 >
   {/* Header */}

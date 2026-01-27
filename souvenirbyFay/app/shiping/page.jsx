@@ -7,7 +7,7 @@ import { Truck, Clock, Globe, ShieldCheck } from "lucide-react";
 
 export default function ShippingPage() {
   return (
-    <section className="bg-[#fcffff] shadow-2xl md:mt-5 py-20">
+    <section className=" craft-overly shadow-2xl md:mt-5 py-20">
       <div className=" p-9  mx-auto max-w-5xl px-4 md:px-8">
 
         {/* Header */}
@@ -34,7 +34,7 @@ export default function ShippingPage() {
         </motion.div>
 
         {/* Content Card */}
-        <div className="space-y-10 shadow-2xl p-8">
+        <div className="space-y-10 shadow-2xl bg-[#fcffff]/60 rounded-md p-8">
 
           {/* Processing Time */}
           <InfoCard
