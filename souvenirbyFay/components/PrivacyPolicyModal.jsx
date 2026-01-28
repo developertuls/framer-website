@@ -16,7 +16,7 @@ export default function PrivacyPolicyModal({ open, onClose }) {
   if (!open) return null;
 
   return (
-    <div className="  fixed inset-0 z-[100] flex items-center justify-center">
+    <div className=" craft-overly fixed inset-0 z-[100] flex items-center justify-center">
 
       {/* BACKDROP */}
       <div

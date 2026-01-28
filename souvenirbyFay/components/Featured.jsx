@@ -57,7 +57,7 @@ function SectionHeading({ title, subtitle }) {
     <div className="relative py-14 md:py-16 text-center ">
       <div className="absolute inset-0  rounded-md  pointer-events-none" />
 
-      <div className="relative z-10">
+      <div className="relative mt-[-30]">
         <h2 className=" font-bold text-3xl md:text-4xl lg:text-5xl text-[#0a313a] mb-2">
           {title}
         </h2>
@@ -74,7 +74,7 @@ function SectionHeading({ title, subtitle }) {
 
 function CollectionGrid({ items, category }) {
   return (
-    <div className=" md:mt-[-100px] md:p-9 md:mb-5  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div className="mt-[-130]     grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {items.map(item => (
         <Link
           key={item.id}
