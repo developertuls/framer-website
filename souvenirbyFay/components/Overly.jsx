@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -24,7 +25,7 @@ export default function OurCraft() {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-14 lg:gap-20 items-center">
             
-            {/* Image */}
+            {/* IMAGE */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -54,7 +55,7 @@ export default function OurCraft() {
               </motion.div>
             </motion.div>
 
-            {/* Content */}
+            {/* CONTENT */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -65,89 +66,68 @@ export default function OurCraft() {
                 OUR WORK
               </span>
 
-              <h2 className="fon text-3xl sm:text-4xl lg:text-5xl text-gray-800 leading-tight mb-7">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl text-gray-800 leading-tight mb-7">
                 This is what we do best and what we love most
               </h2>
 
-              {/* TEXT WRAPPER */}
-              <div
-                className="
+              {/* TEXT */}
+              <p
+                className={`
                   text-gray-600
                   text-[15.5px] sm:text-base
                   leading-[1.9]
                   tracking-[0.01em]
                   max-w-full sm:max-w-xl
+                  overflow-hidden
+                  transition-all duration-500 ease-in-out
+                  ${expanded ? "max-h-[1000px]" : "max-h-[92px]"}
+                  md:max-h-none
+                `}
+              >
+                Crafted with gentle hands and heartfelt devotion, our collections
+                are adorned with the beautiful names of Almighty Allah, verses from
+                the Quran, and Hadith. These timeless pieces bring a sense of peace,
+                spirituality, and barakah into your home, shop, or any space.
+                <br /><br />
+                In addition, for blessed occasions such as weddings and nikahs,
+                our creations serve as a unique and meaningful gift—preserving
+                the cherished memories of the beginning of a beautiful and
+                barakah-filled new journey for both bride and groom.
+              </p>
+
+              {/* READ MORE (Mobile only) */}
+              <button
+                onClick={() => setExpanded(!expanded)}
+                className="
+                  md:hidden
+                  mt-3
+                  text-sm
+                  font-medium
+                  text-[#8a6f4d]
+                  hover:underline
                 "
               >
-                {/* Mobile short text */}
-                <p className="md:hidden">
-                  Crafted with gentle hands and heartfelt devotion, our collections
-                  are adorned with the beautiful names of Almighty Allah, verses
-                  from the Quran, and Hadith.
-                  {!expanded && "…"}
-                </p>
-
-                {/* Mobile expanded text */}
-                {expanded && (
-                  <p className="md:hidden mt-4">
-                    These timeless pieces bring a sense of peace, spirituality,
-                    and barakah into your home, shop, or any space. In addition,
-                    for blessed occasions such as weddings and nikahs, our creations
-                    serve as a unique and meaningful gift—preserving the cherished
-                    memories of the beginning of a beautiful and barakah-filled new
-                    journey for both bride and groom.
-                  </p>
-                )}
-
-                {/* Desktop full text */}
-                <p className="hidden md:block">
-                  Crafted with gentle hands and heartfelt devotion, our collections
-                  are adorned with the beautiful names of Almighty Allah, verses
-                  from the Quran, and Hadith. These timeless pieces bring a sense
-                  of peace, spirituality, and barakah into your home, shop, or
-                  any space.
-                  <br /><br />
-                  In addition, for blessed occasions such as weddings and nikahs,
-                  our creations serve as a unique and meaningful gift—preserving
-                  the cherished memories of the beginning of a beautiful and
-                  barakah-filled new journey for both bride and groom.
-                </p>
-
-                {/* Read more button (mobile only) */}
-               <button
-  onClick={() => setExpanded(!expanded)}
-  className="
-    md:hidden mt-4
-    text-sm
-    text-gray-500
-    hover:text-[#8a6f4d]
-    transition-colors
-    underline-offset-4
-    hover:underline
-  "
->
-  {expanded ? "Read less ↑" : "Read more.."}
-</button>
-
-              </div>
-<a
-  href="/products"
-  className="
-    inline-flex items-center gap-2
-    mt-8
-    px-6 py-3
-    rounded-full
-    border border-[#8a6f4d]
-    text-[#8a6f4d]
-    text-sm font-medium
-    hover:bg-[#8a6f4d]
-    hover:text-white
-    transition-all
-  "
->
-  Learn More →
-</a>
-
+                {expanded ? "Read less ↑" : "Read more"}
+              </button>
+<br />
+              {/* CTA */}
+              <a
+                href="/products"
+                className="
+                  inline-flex items-center gap-2
+                  mt-8
+                  px-6 py-3
+                  rounded-full
+                  border border-[#8a6f4d]
+                  text-[#8a6f4d]
+                  text-sm font-medium
+                  hover:bg-[#8a6f4d]
+                  hover:text-white
+                  transition-all
+                "
+              >
+                Learn More →
+              </a>
             </motion.div>
           </div>
         </motion.div>
