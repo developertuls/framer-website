@@ -8,12 +8,15 @@ import { currencyRates } from "@/lib/currencyRates";
 const CurrencyContext = createContext(null);
 
 // ✅ currency config এখানেই রাখো
-const currencyData = {
-  BDT: { symbol: "৳", flag: "🇧🇩" },
-  CAD: { symbol: "$", flag: "🇨🇦" },
-  USD: { symbol: "$", flag: "🇺🇸" },
-  GBP: { symbol: "£", flag: "🇬🇧" },
+// lib/countryToCurrency.js
+export const countryToCurrency = {
+  BD: "BDT",
+  US: "USD",
+  CA: "CAD",
+  GB: "GBP",
+  JP: "JPY",
 };
+
 
 export function CurrencyProvider({ children }) {
   const [currency, setCurrency] = useState(null);
