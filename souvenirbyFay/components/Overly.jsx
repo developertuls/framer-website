@@ -66,7 +66,7 @@ export default function OurCraft() {
                 OUR WORK
               </span>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl text-gray-800 leading-tight mb-7">
+              <h2 className="text-3xl  sm:text-4xl lg:text-5xl text-gray-800 leading-tight mb-7">
                 This is What We Do Best and What We Love Most
               </h2>
 
