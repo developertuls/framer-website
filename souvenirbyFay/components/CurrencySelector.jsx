@@ -8,7 +8,7 @@ import { FaCaretDown } from "react-icons/fa";
 import Image from "next/image";
 
 export default function CurrencySelector() {
-  const { currency, setCurrency, loading } = useCurrency();
+  const { currency, changeCurrency , loading } = useCurrency();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -80,7 +80,7 @@ export default function CurrencySelector() {
               <button
                 key={c.code}
                 onClick={() => {
-                  setCurrency(c.code);
+                    changeCurrency(c.code);
                   setOpen(false);
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-100 ${
