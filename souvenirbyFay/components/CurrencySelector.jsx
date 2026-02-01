@@ -5,10 +5,16 @@ import { useState, useRef, useEffect } from "react";
 import { useCurrency } from "@/context/CurrencyContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaCaretDown } from "react-icons/fa";
-import Image from "next/image";
+
+const currencies = [
+  { code: "BDT", label: "Bangladesh", symbol: "৳", flag: "🇧🇩" },
+  { code: "CAD", label: "Canada", symbol: "$", flag: "🇨🇦" },
+  { code: "USD", label: "United States", symbol: "$", flag: "🇺🇸" },
+  { code: "GBP", label: "United Kingdom", symbol: "£", flag: "🇬🇧" },
+];
 
 export default function CurrencySelector() {
-  const { currency, changeCurrency , loading } = useCurrency();
+  const { currency, changeCurrency, loading } = useCurrency();
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -23,19 +29,10 @@ export default function CurrencySelector() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const currencies = [
-    { code: "GBP", label: "GBP", symbol: "£", image: "/flags/gb.png" },
-    { code: "USD", label: "USD", symbol: "$", image: "/flags/us.png" },
-    { code: "EUR", label: "EUR", symbol: "€", image: "/flags/europ.png" },
-    { code: "BDT", label: "BDT", symbol: "৳", image: "/flags/bd.png" },
-    { code: "AED", label: "AED", symbol: "د.إ", image: "/flags/arob.png" },
-    { code: "SAR", label: "SAR", symbol: "﷼", image: "/flags/sa.png" },
-  ];
-
   const active =
     currencies.find((c) => c.code === currency) || currencies[0];
 
-  // ⏳ Loading guard
+  // ⏳ Loading skeleton
   if (loading) {
     return (
       <div className="w-[90px] h-[40px] rounded-full bg-gray-200 animate-pulse" />
@@ -48,20 +45,9 @@ export default function CurrencySelector() {
       <button
         onClick={() => setOpen((p) => !p)}
         className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-full hover:bg-white transition"
-        aria-haspopup="listbox"
-        aria-expanded={open}
       >
-        {/* FLAG */}
-        <Image
-          src={active.image}
-          alt={active.code}
-          width={28}
-          height={28}
-          className="rounded-full"
-        />
-
+        <span className="text-lg">{active.flag}</span>
         <span className="text-sm font-medium">{active.code}</span>
-
         <FaCaretDown className="w-4 h-4 opacity-60" />
       </button>
 
@@ -73,24 +59,21 @@ export default function CurrencySelector() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.95 }}
             transition={{ duration: 0.25 }}
-            className="absolute right-0 mt-2 w-44 bg-white rounded-xl shadow-md z-50"
-            role="listbox"
+            className="absolute right-0 mt-2 w-52 bg-white rounded-xl shadow-lg z-50"
           >
             {currencies.map((c) => (
               <button
                 key={c.code}
                 onClick={() => {
-                    changeCurrency(c.code);
+                  changeCurrency(c.code);
                   setOpen(false);
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 text-sm hover:bg-gray-100 ${
                   c.code === currency ? "bg-gray-50 font-medium" : ""
                 }`}
-                role="option"
-                aria-selected={c.code === currency}
               >
-                <Image src={c.image} alt={c.code} width={18} height={18} />
-                <span className="flex-1">{c.label}</span>
+                <span className="text-lg">{c.flag}</span>
+                <span className="flex-1">{c.code}</span>
                 <span className="opacity-70">{c.symbol}</span>
               </button>
             ))}

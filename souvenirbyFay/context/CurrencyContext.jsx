@@ -7,16 +7,23 @@ import { currencyRates } from "@/lib/currencyRates";
 
 const CurrencyContext = createContext(null);
 
+// ✅ currency config এখানেই রাখো
+const currencyData = {
+  BDT: { symbol: "৳", flag: "🇧🇩" },
+  CAD: { symbol: "$", flag: "🇨🇦" },
+  USD: { symbol: "$", flag: "🇺🇸" },
+  GBP: { symbol: "£", flag: "🇬🇧" },
+};
+
 export function CurrencyProvider({ children }) {
-  const [currency, setCurrency] = useState("GBP");
+  const [currency, setCurrency] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔹 Auto detect / load saved
+  // 🔹 Auto detect or load saved
   useEffect(() => {
     async function initCurrency() {
       try {
         const saved = localStorage.getItem("currency");
-
         if (saved) {
           setCurrency(saved);
           return;
@@ -25,8 +32,8 @@ export function CurrencyProvider({ children }) {
         const detected = await detectUserCurrency();
         setCurrency(detected);
         localStorage.setItem("currency", detected);
-      } catch (err) {
-        setCurrency("USD"); // fallback
+      } catch {
+        setCurrency("USD");
       } finally {
         setLoading(false);
       }
@@ -35,30 +42,31 @@ export function CurrencyProvider({ children }) {
     initCurrency();
   }, []);
 
-  // 🔹 Manual change (dropdown / button)
+  // 🔹 Manual change
   const changeCurrency = (newCurrency) => {
     setCurrency(newCurrency);
     localStorage.setItem("currency", newCurrency);
   };
 
   const convertPrice = (priceInGBP) => {
+    if (!currency) return priceInGBP;
     const rate = currencyRates[currency] || 1;
     return (priceInGBP * rate).toFixed(2);
   };
 
   return (
     <CurrencyContext.Provider
-      value={{ currency, changeCurrency, convertPrice, loading }}
+      value={{
+        currency,
+        changeCurrency,
+        convertPrice,
+        loading,
+        currencyInfo: currencyData[currency],
+      }}
     >
       {children}
     </CurrencyContext.Provider>
   );
 }
 
-export const useCurrency = () => {
-  const ctx = useContext(CurrencyContext);
-  if (!ctx) {
-    throw new Error("useCurrency must be used inside CurrencyProvider");
-  }
-  return ctx;
-};
+export const useCurrency = () => useContext(CurrencyContext);
