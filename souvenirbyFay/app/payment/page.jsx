@@ -76,3 +76,7 @@ export default function PaymentPage() {
     </section>
   );
 }
+
+
+
+// kaj ase 
