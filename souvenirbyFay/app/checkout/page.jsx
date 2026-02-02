@@ -54,7 +54,7 @@ const handleChange = (e) => {
 
 
 
-const handleProceedToPayment = (e) => {
+const  handleSubmitOrderRequest = (e) => {
   e.preventDefault();
 
   const orderPayload = {
@@ -90,42 +90,6 @@ const handleProceedToPayment = (e) => {
 
 
 
-  // agercode 
-
-//   const handleSubmit = async (e) => {
-//   e.preventDefault();
-
-//   const firstItem = cartItems[0];
-
-//   const templateParams = {
-//     name: form.name,
-//     email: form.email,
-//     phone: form.phone,
-//     address: form.address,
-//     product: firstItem?.title || "Custom Order",
-//     quantity: firstItem?.quantity || 1,
-//     size: firstItem?.size || "N/A",
-//     customText: firstItem?.customText || "",
-//     specialRequest: firstItem?. specialRequest ||"",
-//   };
-
-//   try {
-//     await emailjs.send(
-//       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-//       process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-//       templateParams,
-//       process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-//     );
-
-//   } catch (error) {
-//     console.error("Email failed:", error);
-//     alert("Order failed");
-//   }
-// };
-
-
-
-
 
 
 
@@ -148,11 +112,11 @@ const handleProceedToPayment = (e) => {
       {/* HEADER */}
       <div className="text-center max-w-2xl mx-auto mb-16">
         <h1 className="text-4xl md:text-5xl font-serif text-[#1e1b4b]">
-          Checkout
+           Review Your Order Request
         </h1>
         <div className="w-16 h-[2px] bg-[#d6a756] mx-auto my-5" />
         <p className="text-gray-600 text-sm md:text-base">
-          Please review your order and provide delivery information.
+            This is a custom order request. No payment is required now.
         </p>
       </div>
 
@@ -165,6 +129,14 @@ const handleProceedToPayment = (e) => {
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
+<div className="rounded-2xl bg-blue-50 border border-blue-200 p-4 text-sm text-blue-800 text-center mb-6">
+  All items are handmade & custom.
+  <br />
+  Final price will be confirmed after reviewing your request.
+</div>
+
+
+
           <h2 className="text-xl font-medium mb-4">
             Order Summary
           </h2>
@@ -214,7 +186,7 @@ const handleProceedToPayment = (e) => {
 
         {/* RIGHT – CUSTOMER FORM */}
         <motion.form
-           onSubmit={handleProceedToPayment}
+           onSubmit={ handleSubmitOrderRequest}
   initial={{ opacity: 0, y: 30 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.6 }}
@@ -289,12 +261,14 @@ const handleProceedToPayment = (e) => {
              
             className="w-full rounded-full bg-[#0f766e] py-4 text-white text-lg font-medium"
           >
-          Proceed to Payment
+        Submit Order Request
+
           </motion.button>
 
           <p className="text-xs text-gray-500 text-center">
-            Order confirmation will be done after review.
-          </p>
+  We will review your request and contact you within 24 hours to confirm details and final pricing.
+</p>
+
         </motion.form>
       </div>
     </section>

@@ -101,9 +101,13 @@ export default  function PricingGate({ open, onClose }) {
   </div>
 
   {/* Footer note */}
-  <div className="mt-6 rounded-xl bg-gray-100 px-4 py-3 text-xs sm:text-sm text-[#1B1464]">
-    Final price depends on size, design, personalization & packaging.
-  </div>
+ <div className="mt-6 rounded-xl bg-gray-100 px-4 py-3 text-xs sm:text-sm text-[#1B1464]">
+  Final price depends on size, design, personalization & packaging.     <br /> All prices are in USD
+</div>
+
+
+
+
 </motion.div>
 
         </>

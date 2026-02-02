@@ -3,14 +3,14 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useCurrency } from "@/context/CurrencyContext";
+
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
-import emailjs from "emailjs-com";
+
 
 export default function OrderForm({ product, mode = "product" }) {
-  const { convertPrice } = useCurrency();
+
   const { t } = useLanguage();
   const { addToCart } = useCart();
   const router = useRouter();
@@ -74,33 +74,59 @@ export default function OrderForm({ product, mode = "product" }) {
 
         {/* PRICE NOTE */}
         <div className="rounded-2xl bg-gradient-to-r from-[#5c2574] to-[#7a3fa1] p-4 text-center text-sm text-white">
-          {t("priceAfterReview")}
-        </div>
+            
+  Pricing depends on size, design & customization.
+  After reviewing your request, we’ll confirm the final price.
+</div>
+        
 
         {/* SIZE */}
-        <div className="space-y-3">
-          <p className="text-sm font-medium">{t("selectSize")}</p>
+ 
+<div className="space-y-3">
+  <p className="text-sm font-medium">Select Size</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {["13", "10"].map((size) => (
-              <button
-                type="button"
-                key={size}
-                onClick={() => setSelectedSize(size)}
-                className={`rounded-2xl border p-5 text-left transition ${
-                  selectedSize === size
-                    ? "bg-[#501a67] text-white"
-                    : "bg-white hover:border-[#501a67]"
-                }`}
-              >
-                <p className="font-medium">{size} inch Engagement Tray</p>
-                <p className="text-sm mt-1">
-                  {t("from")} {convertPrice(size === "13" ? 115 : 100)}
-                </p>
-              </button>
-            ))}
-          </div>
-        </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {["13", "10"].map((size) => (
+      <button
+        type="button"
+        key={size}
+        onClick={() => setSelectedSize(size)}
+        className={`rounded-2xl border p-5 text-left transition ${
+          selectedSize === size
+            ? "bg-[#501a67] text-white"
+            : "bg-white hover:border-[#501a67]"
+        }`}
+      >
+        <p className="font-medium">
+          {size} inch Engagement Tray
+        </p>
+        <p className="text-sm mt-1">
+          Starting from ${size === "13" ? 115 : 100}
+        </p>
+      </button>
+    ))}
+  </div>
+</div>
+
+
+{selectedSize && (
+  <div className="rounded-xl bg-[#f4f8f8] p-4 text-sm text-center text-[#336a68]">
+    Estimated price:{" "}
+    <span className="font-semibold">
+      ${selectedSize === "13" ? 115 : 100}
+    </span>
+    <p className="mt-1 text-xs text-gray-500">
+      Final price may change based on customization
+    </p>
+  </div>
+)}
+
+
+      
+
+
+
+
 
         {/* GLASS BOX */}
         <div className="grid grid-cols-2 gap-4">
@@ -119,6 +145,7 @@ export default function OrderForm({ product, mode = "product" }) {
             </button>
           ))}
         </div>
+
 
         {/* CUSTOM TEXT */}
         <textarea

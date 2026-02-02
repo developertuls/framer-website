@@ -32,12 +32,12 @@ export default function CartPage() {
       {/* TITLE */}
       <h1 className="text-3xl  text-center">Your Cart</h1>
 
-      {/* NOTICE */}
-      <div className="rounded-2xl bg-yellow-50 border border-yellow-200 p-4 text-sm text-yellow-800 text-center">
-        Adding items to cart does not confirm your order.
-        <br />
-        Final confirmation will be done after review.
-      </div>
+    <div className="rounded-2xl bg-yellow-50 border border-yellow-200 p-4 text-sm text-yellow-800 text-center">
+  Items in your cart are <strong>custom-made</strong>.
+  <br />
+  Prices shown are estimates. Final price will be confirmed after review.
+</div>
+
 
       {/* CART ITEMS */}
       <div className="space-y-4">
@@ -94,6 +94,17 @@ export default function CartPage() {
                 </p>
               )}
 
+{item.size && (
+  <p className="text-xs text-gray-500 mt-1">
+    Estimated price:{" "}
+    <span className="font-medium">
+      ${item.size === "13" ? 115 : 100}
+    </span>{" "}
+    per item
+  </p>
+)}
+
+
               <button
                 onClick={() => removeFromCart(item.id)}
                 className="text-sm text-red-500 mt-2 hover:underline"
@@ -110,7 +121,8 @@ export default function CartPage() {
         href="/checkout"
         className="block text-center bg-[#336a68] text-white py-4 rounded-2xl hover:bg-gray-900 transition"
       >
-        Review & Confirm Order
+       Review Order Request
+
       </Link>
     </div>
   );

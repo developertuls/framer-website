@@ -69,7 +69,12 @@ export default function ProductsContent() {
                 <p className="mt-4 text-center text-sm font-medium text-gray-800">
                   {product.title}
                 </p>
+                <p className="mt-1 text-center text-xs text-gray-500">
+  Starting from $115 • Price varies by size & customization
+</p>
+
               </Link>
+              
             ))}
           </div>
 

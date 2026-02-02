@@ -7,8 +7,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-
-import { CurrencyProvider } from "@/context/CurrencyContext";
 import { LanguageProvider } from "@/context/LanguageContext";
 import ClientLayout from "@/components/ClientLayout";
 import { CartProvider } from "@/context/CartContext";
@@ -43,11 +41,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider>
-          <CurrencyProvider>
+       
           <CartProvider>
             <ClientLayout>{children}</ClientLayout>
             </CartProvider>
-          </CurrencyProvider>
+      
         </LanguageProvider>
       </body>
     </html>

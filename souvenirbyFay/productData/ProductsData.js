@@ -190,7 +190,7 @@ const ProductsData = [
 
    {
     id: 21,
-    title: " Wedding Tray 21",
+    title: "",
     slug: "22",
     category: "wedding",
     image: "/product1.jpg",
@@ -248,7 +248,7 @@ const ProductsData = [
 
   {
     id: 28,
-    title: "family Tray 28",
+    title: "",
     slug: "29",
     category: "wedding",
     image: "/fu-2.jpeg",
