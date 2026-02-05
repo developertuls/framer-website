@@ -4,14 +4,14 @@
 import { useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
-export default function OrderSuccess() {
+export default function OrderSuccessClient() {
   useEffect(() => {
     const order = JSON.parse(localStorage.getItem("orderPayload"));
     if (!order) return;
 
     const { customer, items, payment } = order;
 
-    // 🔴 ADMIN EMAIL (FULL)
+    // 🔴 ADMIN EMAIL
     emailjs.send(
       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
       process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE_ID,
@@ -29,7 +29,7 @@ export default function OrderSuccess() {
       process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
     );
 
-    // 🟢 USER EMAIL (SHORT)
+    // 🟢 USER EMAIL
     emailjs.send(
       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
       process.env.NEXT_PUBLIC_EMAILJS_USER_TEMPLATE_ID,
