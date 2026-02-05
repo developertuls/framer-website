@@ -5,24 +5,31 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function PaymentPage() {
- const handlePay = async () => {
-  const order = JSON.parse(localStorage.getItem("orderPayload"));
 
-  const res = await fetch("/api/checkout", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      items: order.items,
-    }),
-  });
+  const handlePay = async () => {
+    const orderRaw = localStorage.getItem("orderPayload");
 
-  const data = await res.json();
+    if (!orderRaw) {
+      alert("No order found");
+      return;
+    }
 
-  if (data?.url) {
-    window.location.href = data.url;
-  }
-};
+    const order = JSON.parse(orderRaw);
 
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: order.items,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data?.url) {
+      window.location.href = data.url;
+    }
+  };
 
   return (
     <section className="bg-[#fcffff] px-4 py-24 min-h-screen flex items-center">
@@ -36,18 +43,18 @@ export default function PaymentPage() {
           </p>
         </div>
 
-        {/* PAYMENT METHODS INFO */}
-        <div className="bg-white rounded-3xl shadow-lg p-6 space-y-6">
+        {/* PAYMENT METHODS */}
+        <div className="bg-white rounded-3xl shadow-lg p-6 space-y-5">
           <p className="text-center text-sm text-gray-600">
             Available payment methods
           </p>
 
-          <div className="flex justify-center gap-4 flex-wrap">
-            <Image src="/flags/visa.png" width={48} height={28} alt="Visa" />
-            <Image src="/flags/mas.webp" width={48} height={28} alt="Mastercard" />
-            <Image src="/flags/ame.png" width={48} height={28} alt="Amex" />
-            <Image src="/flags/apple.png" width={48} height={28} alt="Apple Pay" />
-            <Image src="/flags/gool.png" width={48} height={28} alt="Google Pay" />
+          <div className="flex justify-center gap-4 flex-wrap items-center">
+            <Image src="/flags/visa.png" width={48} height={30} alt="Visa" />
+            <Image src="/flags/mas.webp" width={48} height={30} alt="Mastercard" />
+            <Image src="/flags/ame.png" width={48} height={30} alt="American Express" />
+            <Image src="/flags/apple.png" width={48} height={30} alt="Apple Pay" />
+            <Image src="/flags/gool.png" width={48} height={30} alt="Google Pay" />
           </div>
 
           <p className="text-xs text-center text-gray-400">
@@ -73,6 +80,3 @@ export default function PaymentPage() {
     </section>
   );
 }
-
-
-

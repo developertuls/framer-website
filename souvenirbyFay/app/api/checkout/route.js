@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    // ✅ Ensure secret key exists
     if (!process.env.STRIPE_SECRET_KEY) {
       return NextResponse.json(
         { error: "Stripe secret key missing" },
@@ -27,7 +26,7 @@ export async function POST(req) {
       price_data: {
         currency: "usd",
         product_data: {
-          name: `${item.title} (${item.size || ""} inch)`,
+          name: item.title,
         },
         unit_amount: Math.round(item.price * 100),
       },
@@ -36,13 +35,9 @@ export async function POST(req) {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      payment_method_types: ["card"],
       line_items,
-      metadata: {
-        items: JSON.stringify(items),
-      },
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cancel`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/order-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/payment`,
     });
 
     return NextResponse.json({ url: session.url });
