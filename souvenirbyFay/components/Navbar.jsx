@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLanguage } from "@/context/LanguageContext";
-
+import CurrencySwitcher from "@/components/CurrencySwitcher"
 
 
 
@@ -55,7 +55,7 @@ export default function Navbar() {
 
 <div className="hidden md:flex items-center gap-2">
             <div className="rounded-full  ring-[#080249]/30">
-          
+             <CurrencySwitcher/>
             </div>
                {/* vertical line */}
               <span className="h-4 w-px bg-gray-400 mx-1" />
@@ -83,11 +83,13 @@ export default function Navbar() {
           </Link>
           <br />
           <span className="font-bold md:mt-[-6]">...</span>
-         
+           
 </div>
           {/* Currency & Language */}
-          
+        
+            
             <div className="rounded-full ring-2 ring-[#080249]/30">
+           
               <LanguageSwitcher />
             </div>
           </div>
@@ -180,7 +182,8 @@ export default function Navbar() {
 
             {/* Currency & Language */}
             <div className="mt-6 flex gap-3 mx-auto">
-            
+          
+              <CurrencySwitcher />
               <LanguageSwitcher />
             </div>
           </nav>

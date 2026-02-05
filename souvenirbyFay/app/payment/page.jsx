@@ -5,27 +5,24 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function PaymentPage() {
-  const handlePay = async () => {
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: 120, // USD
-          orderId: "ORDER_" + Date.now(),
-        }),
-      });
+ const handlePay = async () => {
+  const order = JSON.parse(localStorage.getItem("orderPayload"));
 
-      const data = await res.json();
+  const res = await fetch("/api/checkout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      items: order.items,
+    }),
+  });
 
-      if (data?.url) {
-        window.location.href = data.url; // 🔥 Stripe Checkout
-      }
-    } catch (err) {
-      console.error("Payment error:", err);
-      alert("Something went wrong. Please try again.");
-    }
-  };
+  const data = await res.json();
+
+  if (data?.url) {
+    window.location.href = data.url;
+  }
+};
+
 
   return (
     <section className="bg-[#fcffff] px-4 py-24 min-h-screen flex items-center">
@@ -79,4 +76,3 @@ export default function PaymentPage() {
 
 
 
-// kaj ase 

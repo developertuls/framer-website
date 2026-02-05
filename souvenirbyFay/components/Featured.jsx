@@ -32,7 +32,7 @@ export default function HomeCollections() {
 
       {/* ===== WEDDING ===== */}
       <SectionHeading
-        title="Wedding Collection"
+        title="Engagement trays include ring box & handles"
         subtitle="Made to celebrate love & new beginnings"
       />
 

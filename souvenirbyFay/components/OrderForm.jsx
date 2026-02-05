@@ -1,76 +1,134 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-
-import { useLanguage } from "@/context/LanguageContext";
-import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/context/CartContext";
+import { useCurrency } from "@/context/CurrencyContext";
 
 
-export default function OrderForm({ product, mode = "product" }) {
 
-  const { t } = useLanguage();
+export default function OrderForm({ product }) {
   const { addToCart } = useCart();
   const router = useRouter();
 
+  const [selectedSize, setSelectedSize] = useState(null);
   const [quantity, setQuantity] = useState(1);
-  const [glassBox, setGlassBox] = useState("with");
   const [customText, setCustomText] = useState("");
   const [specialRequest, setSpecialRequest] = useState("");
   const [email, setEmail] = useState("");
-  const [selectedSize, setSelectedSize] = useState(null);
 
-  
-
-  // ===============================
-  // SUBMIT
-  // ===============================
- const handleSubmit = (e) => {
-  e.preventDefault();
-
-  if (!selectedSize) {
-    alert("Please select a size");
-    return;
-  }
-
-  addToCart({
-    id: Date.now(),
-    type: mode,
-    title: product?.title || "Custom Order",
-    image: mode === "product" ? product?.image : null,
-    size: selectedSize,
-    glassBox,
-    quantity,
-    customText,
-    specialRequest,
-    email,
-    // phone,
-    // FullName,
+  const [addons, setAddons] = useState({
+    coasterNoBase: false,
+    coasterWithBase: false,
+    flowerHeart: false,
   });
 
-  router.push("/cart");
+  // ================= PRICE CALCULATION =================
+  const priceDetails = useMemo(() => {
+    let base = 0;
+
+    // ✅ SIZE BASED (Wedding)
+    if (product?.type === "size-based") {
+      const sizeData = product?.sizes?.find(
+        (s) => s.label === selectedSize
+      );
+      base = sizeData?.price || 0;
+    }
+
+    // ✅ FIXED (Islamic)
+    if (product?.type === "fixed") {
+      base = product?.basePrice || 0;
+    }
+
+    let addonsTotal = 0;
+
+    if (product?.type === "size-based") {
+      if (addons.coasterNoBase) addonsTotal += 50;
+      if (addons.coasterWithBase) addonsTotal += 60;
+      if (addons.flowerHeart) addonsTotal += 120;
+    }
+
+    const finalTotal = (base + addonsTotal) * quantity;
+
+    return { base, addonsTotal, finalTotal };
+  }, [selectedSize, addons, quantity, product]);
+
+
+
+  // ================= SUBMIT =================
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (product?.type === "size-based" && !selectedSize) {
+      alert("Please select a tray size");
+      return;
+    }
+
+    const selectedAddons = [];
+
+    if (addons.coasterNoBase)
+      selectedAddons.push({ label: "4 Coasters (No Base)", price: 50 });
+
+    if (addons.coasterWithBase)
+      selectedAddons.push({ label: "4 Coasters (With Base)", price: 60 });
+
+    if (addons.flowerHeart)
+      selectedAddons.push({
+        label: "Flower Preservation (Heart)",
+        price: 120,
+      });
+
+    addToCart({
+      id: Date.now(),
+      title: product?.title,
+      image: product?.image,
+      size: product?.type === "size-based" ? selectedSize : null,
+      quantity,
+      customText,
+      specialRequest,
+      email,
+      addons: product?.type === "size-based" ? selectedAddons : [],
+      price: priceDetails.finalTotal,
+      category: product?.category,
+    });
+
+    router.push("/cart");
+  };
+
+
+
+
+
+
+
+
+
+const { currency, convertPrice, currencyList } = useCurrency();
+
+const formatPrice = (amount) => {
+  const converted = convertPrice(amount);
+
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency,
+  }).format(converted);
 };
 
 
+
+
+
+
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className=" flex justify-center px-4 sm:px-6 lg:px-8 py-16"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="w-full max-w-3xl bg-[#fcffff]/60 rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 space-y-8"
+    <div className="min-h-screen py-16 px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl p-8 space-y-8"
       >
-        {/* TITLE */}
-        {mode === "product" && product?.title && (
-          <h1 className="text-center text-3xl font-serif">
-            {product.title}
-          </h1>
-        )}
+
 
         {/* PRICE NOTE */}
         <div className="rounded-2xl bg-gradient-to-r from-[#5c2574] to-[#7a3fa1] p-4 text-center text-sm text-white">
@@ -80,89 +138,79 @@ export default function OrderForm({ product, mode = "product" }) {
 </div>
         
 
-        {/* SIZE */}
- 
-<div className="space-y-3">
-  <p className="text-sm font-medium">Select Size</p>
-
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-    {["13", "10"].map((size) => (
-      <button
-        type="button"
-        key={size}
-        onClick={() => setSelectedSize(size)}
-        className={`rounded-2xl border p-5 text-left transition ${
-          selectedSize === size
-            ? "bg-[#501a67] text-white"
-            : "bg-white hover:border-[#501a67]"
-        }`}
-      >
-        <p className="font-medium">
-          {size} inch Engagement Tray
-        </p>
-        <p className="text-sm mt-1">
-          Starting from ${size === "13" ? 115 : 100}
-        </p>
-      </button>
-    ))}
-  </div>
-</div>
 
 
-{selectedSize && (
-  <div className="rounded-xl bg-[#f4f8f8] p-4 text-sm text-center text-[#336a68]">
-    Estimated price:{" "}
-    <span className="font-semibold">
-      ${selectedSize === "13" ? 115 : 100}
-    </span>
-    <p className="mt-1 text-xs text-gray-500">
-      Final price may change based on customization
-    </p>
-  </div>
-)}
+        {/* TITLE */}
+        <h1 className="text-3xl font-serif text-center">
+          {product?.title}
+        </h1>
 
+        {/* SIZE (ONLY WEDDING) */}
+        {product?.type === "size-based" && (
+          <div>
+            <p className="text-sm font-medium mb-4">Select Size</p>
+            <div className="grid grid-cols-2 gap-5">
+              {product?.sizes?.map((item) => (
+                <button
+                  type="button"
+                  key={item.label}
+                  onClick={() => setSelectedSize(item.label)}
+                  className={`rounded-2xl border p-6 text-left transition ${
+                    selectedSize === item.label
+                      ? "bg-[#501a67] text-white border-[#501a67]"
+                      : "bg-white hover:border-[#501a67]"
+                  }`}
+                >
+                  <p className="font-medium">
+                    {item.label} Engagement Tray
+                  </p>
+                  <p className="text-sm mt-1">
+                    {formatPrice(item.price)}
+                  </p>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
-      
+        {/* ADDONS (ONLY WEDDING) */}
+        {product?.type === "size-based" && (
+          <div>
+            <p className="text-sm font-medium mb-4">Add-ons (Optional)</p>
 
-
-
-
-
-        {/* GLASS BOX */}
-        <div className="grid grid-cols-2 gap-4">
-          {["with", "without"].map((type) => (
-            <button
-              type="button"
-              key={type}
-              onClick={() => setGlassBox(type)}
-              className={`rounded-full py-3 text-sm font-medium transition ${
-                glassBox === type
-                  ? "bg-[#290d35] text-white"
-                  : "bg-gray-100 hover:bg-gray-200"
-              }`}
-            >
-              {t(type === "with" ? "withGlass" : "withoutGlass")}
-            </button>
-          ))}
-        </div>
-
-
-        {/* CUSTOM TEXT */}
-        <textarea
-          value={customText}
-          onChange={(e) => setCustomText(e.target.value)}
-          placeholder="Custom text"
-          className="w-full rounded-2xl border bg-gray-50 p-4 text-sm focus:ring-2 focus:ring-[#336a68] outline-none"
-        />
+            {[
+              ["coasterNoBase", "4 Coasters (No Base $50)"],
+              ["coasterWithBase", "4 Coasters (With Base $60)"],
+              ["flowerHeart", "Flower Preservation $120 (Heart)"],
+            ].map(([key, label]) => (
+              <label
+                key={key}
+                className="flex justify-between bg-gray-50 p-4 rounded-xl mb-3"
+              >
+                <span>{label}</span>
+                <input
+                  type="checkbox"
+                  checked={addons[key]}
+                  onChange={() =>
+                    setAddons((prev) => ({
+                      ...prev,
+                      [key]: !prev[key],
+                    }))
+                  }
+                />
+              </label>
+            ))}
+          </div>
+        )}
 
         {/* QUANTITY */}
-        <div className="flex justify-between items-center bg-gray-50 rounded-2xl p-4">
-          <span>{t("quantity")}</span>
+        <div className="flex justify-between items-center bg-gray-50 rounded-xl p-4">
+          <span>Quantity</span>
           <div className="flex gap-4 items-center">
             <button
               type="button"
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-              className="h-9 w-9 rounded-full bg-white shadow text-lg"
+              className="h-9 w-9 rounded-full bg-white shadow"
             >
               −
             </button>
@@ -170,57 +218,77 @@ export default function OrderForm({ product, mode = "product" }) {
             <button
               type="button"
               onClick={() => setQuantity((q) => q + 1)}
-              className="h-9 w-9 rounded-full bg-white shadow text-lg"
+              className="h-9 w-9 rounded-full bg-white shadow"
             >
               +
             </button>
           </div>
         </div>
 
-        {/* SPECIAL REQUEST */}
+        {/* TEXTAREAS */}
+        <textarea
+          value={customText}
+          onChange={(e) => setCustomText(e.target.value)}
+          placeholder="Custom text (Name, Date, etc.)"
+          className="w-full rounded-2xl border bg-gray-50 p-4 text-sm"
+        />
+
         <textarea
           value={specialRequest}
           onChange={(e) => setSpecialRequest(e.target.value)}
-          placeholder="Special request"
-          className="w-full rounded-2xl border bg-gray-50 p-4 text-sm focus:ring-2 focus:ring-[#336a68] outline-none"
+          placeholder="Special request (Color, design preference, etc.)"
+          className="w-full rounded-2xl border bg-gray-50 p-4 text-sm"
         />
-
-        {/* CUSTOMER INFO */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input
-            name="name"
-            placeholder="Full Name"
-            required
-            className="w-full rounded-2xl border bg-gray-50 p-4 text-sm focus:ring-2 focus:ring-[#336a68] outline-none"
-          />
-          <input
-           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-            name="email"
-            type="email"
-            placeholder="Email"
-            required
-            className="w-full rounded-2xl border bg-gray-50 p-4 text-sm focus:ring-2 focus:ring-[#336a68] outline-none"
-          />
-        </div>
 
         <input
-          name="phone"
-          placeholder="Phone"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
           required
-          className="w-full rounded-2xl border bg-gray-50 p-4 text-sm focus:ring-2 focus:ring-[#336a68] outline-none"
+          placeholder="Email"
+          className="w-full rounded-2xl border bg-gray-50 p-4 text-sm"
         />
 
-        {/* SUBMIT */}
+        {/* LIVE PRICE BOX */}
+        {(product?.type === "fixed" || selectedSize) && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="rounded-3xl bg-white shadow-2xl border p-6 space-y-4"
+          >
+            <h3 className="text-lg font-semibold">Order Summary</h3>
+
+            <div className="flex justify-between text-sm">
+              <span>Base Price</span>
+              <span>{formatPrice(priceDetails.base)}</span>
+            </div>
+
+            {priceDetails.addonsTotal > 0 && (
+              <div className="flex justify-between text-sm">
+                <span>Add-ons</span>
+                <span>{formatPrice(priceDetails.addonsTotal)}</span>
+              </div>
+            )}
+
+            <div className="border-t pt-4 flex justify-between">
+              <span className="font-medium">Estimated Total</span>
+              <span className="text-xl font-bold">
+                {formatPrice(priceDetails.finalTotal)}
+              </span>
+            </div>
+          </motion.div>
+        )}
+
         <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
           type="submit"
-          className="w-full rounded-full bg-[#336a68] py-4 text-white text-lg font-medium shadow-lg"
+          className="w-full rounded-full bg-[#336a68] py-4 text-white text-lg"
         >
-          {mode === "custom" ? "Submit Custom Order" : "Add to Cart"}
+          Add to Cart
         </motion.button>
-      </motion.div>
-    </form>
+      </form>
+    </div>
   );
 }

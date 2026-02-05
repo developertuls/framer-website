@@ -2,15 +2,23 @@
 // productData/ProductsData.js
 const ProductsData = [
   
-  {
-    id: 1,
-    title: "Wedding Tray 1",
-    slug: "1",
-    category: "wedding",
-    image: "/slider-3.jpg",
-  },
+{
+  id: 1,
+  title: "Engagement Tray",
+  slug: "1",
+  category: "wedding",
+  image: "/slider-3.jpg",
+  pteg:" Price varies by size & customization",
+type: "size-based",
+sizes: [
+  { label: "13 inch", price: 115 },
+  { label: "10 inch", price: 100 },
+],
+
+},
+
   
-  
+  // 
 
 
   {
@@ -328,6 +336,9 @@ const ProductsData = [
     slug: "38",
     category: "islamic",
     image: "/islam24.jpeg",
+    type: "fixed",
+    basePrice: 49,
+
   },
 
 
@@ -338,7 +349,11 @@ const ProductsData = [
     slug: "39",
     category: "islamic",
     image: "/is.jpeg",
+    type: "fixed",
+basePrice: 45,
+
   },
+
   {
     id: 39,
     title: "home Art 39",
