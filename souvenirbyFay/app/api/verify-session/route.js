@@ -1,39 +1,36 @@
 
 import Stripe from "stripe";
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  const { session_id } = await req.json();
+  try {
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return NextResponse.json(
+        { error: "Stripe secret key missing" },
+        { status: 500 }
+      );
+    }
 
-  const session = await stripe.checkout.sessions.retrieve(session_id, {
-    expand: ["customer_details"],
-  });
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-  if (session.payment_status !== "paid") {
-    return Response.json({ success: false }, { status: 400 });
+    const { sessionId } = await req.json();
+
+    if (!sessionId) {
+      return NextResponse.json(
+        { error: "Session ID required" },
+        { status: 400 }
+      );
+    }
+
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    return NextResponse.json({ session });
+
+  } catch (error) {
+    console.error("Verify Session Error:", error);
+    return NextResponse.json(
+      { error: "Something went wrong" },
+      { status: 500 }
+    );
   }
-
-  // 🔥 THIS is your orderPayload
-  const orderPayload = {
-    customer: {
-      name: session.customer_details.name,
-      email: session.customer_details.email,
-      phone: session.customer_details.phone || "",
-      address: session.customer_details.address?.line1 || "",
-    },
-    items: session.metadata?.items
-      ? JSON.parse(session.metadata.items)
-      : [],
-    payment: {
-      method: session.payment_method_types[0],
-      status: session.payment_status,
-    },
-    createdAt: Date.now(),
-  };
-
-  return Response.json({
-    success: true,
-    orderPayload,
-  });
 }
