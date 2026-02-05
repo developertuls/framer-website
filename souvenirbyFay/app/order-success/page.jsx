@@ -1,10 +1,10 @@
 
 "use client";
 
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
-export default function SuccessClient() {
+function SuccessContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams.get("session_id");
 
@@ -12,7 +12,6 @@ export default function SuccessClient() {
     if (!sessionId) return;
 
     console.log("Stripe Session:", sessionId);
-    // email / order logic here
   }, [sessionId]);
 
   return (
@@ -22,5 +21,13 @@ export default function SuccessClient() {
       </h1>
       <p className="mt-4">Thank you for your order.</p>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="py-32 text-center">Loading...</div>}>
+      <SuccessContent />
+    </Suspense>
   );
 }
