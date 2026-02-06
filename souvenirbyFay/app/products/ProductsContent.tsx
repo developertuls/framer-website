@@ -48,37 +48,58 @@ export default function ProductsContent() {
             <div className="mx-auto mt-6 h-[2px] w-24 rounded-full bg-[#C9A24D]" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className=" hovereffect grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
             {products.map(product => (
-              <Link key={product.id} href={`/order/${product.slug}`} className="group">
-                <motion.div
-                  initial={{ y: 40, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl"
-                >
-                  <Image
-                    src={product.image}
-                    alt={product.title}
-                    width={500}
-                    height={500}
-                    className="h-[260px] w-full object-cover group-hover:scale-110 transition"
-                  />
-                </motion.div>
-                <p className="mt-4 text-center text-sm font-medium text-gray-800">
-                  {product.title}
-                </p>
+       
+       <Link
+  key={product.id}
+  href={`/order/${product.slug}`}
+  className="group block"
+>
+  <motion.div
+    initial={{ y: 40, opacity: 0 }}
+    whileInView={{ y: 0, opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+    className="relative overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-2xl transition"
+  >
+    {/* Image */}
+    <Image
+      src={product.image}
+      alt={product.title}
+      width={500}
+      height={500}
+      className="h-[260px] w-full object-cover transition duration-700 group-hover:scale-110"
+    />
 
-              <p>
-                {product.pteg}
-              </p>
+    {/* Dark Overlay */}
+    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-500" />
+
+    {/* Hover Content */}
+    <div className="absolute inset-0 flex flex-col items-center justify-center 
+                    text-center px-4
+                    opacity-0 translate-y-6
+                    group-hover:opacity-100 group-hover:translate-y-0
+                    transition-all duration-500">
+
+      <p className="text-white text-lg font-semibold mb-2">
+        {product.pteg}
+      </p>
+
+      <span className="text-gray-200 text-sm">
+        {product.note}
+      </span>
+
+    </div>
+  </motion.div>
+
+  {/* Title */}
+  <p className="mt-4 text-center text-sm font-medium text-gray-800 group-hover:text-[#C9A24D] transition">
+    {product.title}
+  </p>
+</Link>
 
 
-
-
-
-              </Link>
               
             ))}
           </div>

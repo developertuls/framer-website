@@ -1,21 +1,25 @@
 
 // productData/ProductsData.js
 const ProductsData = [
-  
 {
   id: 1,
-  title: "Engagement Tray",
-  slug: "1",
+  title: "Engagement Tray 1",
+  slug: "engagement-tray",
   category: "wedding",
   image: "/slider-3.jpg",
-  pteg:" Price varies by size & customization",
-type: "size-based",
-sizes: [
-  { label: "13 inch", price: 115 },
-  { label: "10 inch", price: 100 },
-],
 
+  pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
 },
+  
+
 
   
   // 
@@ -23,10 +27,19 @@ sizes: [
 
   {
     id: 2,
-    title: " Wedding Tray 2",
+    title: "Engagement Tray  2",
     slug: "2",
     category: "wedding",
     image: "/p2.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
 
@@ -34,18 +47,36 @@ sizes: [
 
   {
     id: 3,
-    title: "Wedding Tray 3",
+    title: "Engagement Tray  3",
     slug: "3",
     category: "wedding",
     image: "/hero-1.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
     id: 4,
-    title: "Wedding Tray 4",
+    title: "Engagement Tray  4",
     slug: "4",
     category: "wedding",
     image: "/fu-16.jpg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
 
@@ -53,74 +84,145 @@ sizes: [
 
   {
     id: 5,
-    title: "Wedding Tray 5",
+    title: "Engagement Tray  5",
     slug: "6",
     category: "wedding",
     image: "/hero-2.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
 
    {
     id: 6,
-    title: " Wedding Tray 6",
+    title: "Engagement Tray  6",
     slug: "7",
     category: "wedding",
     image: "/fu-6.jpeg",
-   
+    pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
    {
     id: 7,
-    title: " Wedding Tray 7",
+    title: "Personalized Engagement Tray with Photo  7",
     slug: "8",
     category: "wedding",
     image: "/w2.jpg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
    
   },
 
    {
     id: 8,
-    title: " Wedding Tray 8",
+    title: "Personalized Graduation Tray  8",
     slug: "9",
     category: "wedding",
     image: "/w3.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
    
   },
 
    {
     id: 9,
-    title: " Wedding Tray 9",
+    title: "Engagement Tray 9",
     slug: "10",
     category: "wedding",
     image: "/w3.jpg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
    
   },
 
    {
     id: 10,
-    title: " Wedding Tray 10",
+    title: "Personalized Engagement Tray with Photo 10",
     slug: "11",
     category: "wedding",
     image: "/w4.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
    
   },
 
    {
     id: 11,
-    title: " Wedding Tray 11",
+    title: " Mother’s Day Personalized Tray 11",
     slug: "12",
     category: "wedding",
     image: "/w5.jpeg",
-   
+    pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
+
    {
     id: 12,
-    title: " Wedding Tray 12",
+    title: "Engagement Tray 12",
     slug: "13",
     category: "wedding",
     image: "/fu-7.jpeg",
-   
+    pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
+
 
    {
     id: 13,
@@ -128,16 +230,33 @@ sizes: [
     slug: "14",
     category: "wedding",
     image: "/p3.jpg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
    
   },
 
    {
     id: 14,
-    title: " Wedding Tray 14",
+    title: "Engagement Tray  14",
     slug: "15",
     category: "wedding",
     image: "/p4.jpg",
-   
+    pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
    {
@@ -146,73 +265,141 @@ sizes: [
     slug: "16",
     category: "wedding",
     image: "/p5.jpg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
    
   },
    {
     id: 16,
-    title: " Wedding Tray 16",
+    title: "Engagement Tray 16",
     slug: "17",
     category: "wedding",
     image: "/p5.jpg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
    
   },
 
    {
     id: 17,
-    title: " Wedding Tray 17",
+    title: "Engagement Tray 17",
     slug: "18",
     category: "wedding",
     image: "/p6.jpg",
-   
+    pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
 
 
    {
     id: 18,
-    title: " Wedding Tray 18",
+    title: "Engagement Tray 18",
     slug: "19",
     category: "wedding",
     image: "/p7.jpg",
-   
+    pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
    {
     id: 19,
-    title: " Wedding Tray 19",
+    title: " Engagement Tray 19",
     slug: "20",
     category: "wedding",
     image: "/p8.jpg",
-   
+    pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
    {
     id: 20,
-    title: " Wedding Tray 20",
+    title: "Engagement Tray 20",
     slug: "21",
     category: "wedding",
     image: "/p9.jpg",
-   
+    pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
 
    {
     id: 21,
-    title: "",
+    title: "Personalized Baby Name Islamic Tray 21",
     slug: "22",
     category: "wedding",
     image: "/product1.jpg",
-   
+    pteg: "This is a 10 inch plaque, that includes a stand ($75) any extra add ons would be $2 addition to it",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
 
   {
     id: 22,
-    title: "Wedding Tray 22",
+    title: "Mother’s Day Personalized Tray 22",
     slug: "23",
     category: "wedding",
     image: "/w5.jpeg",
+     pteg: "Available customization",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
+
 
   {
     id: 23,
@@ -220,15 +407,35 @@ sizes: [
     slug: "24",
     category: "wedding",
     image: "/hero-4.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
     id: 24,
-    title: "Wedding Tray 24",
+    title: "Personalized Wedding Resin Photo Block 24",
     slug: "25",
     category: "wedding",
     image: "/hero-5.jpeg",
+     pteg: "Available customization.",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
+
+
 
   {
     id: 25,
@@ -236,78 +443,171 @@ sizes: [
     slug: "26",
     category: "wedding",
     image: "/f.webp",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
+
+
 
   {
     id: 26,
-    title: "family Tray 26",
+    title: "Family Memory Resin Tray 26",
     slug: "27",
     category: "wedding",
     image: "/f1.jpg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
     id: 27,
-    title: "wedding Tray 27",
+    title: "Engagement Tray 27",
     slug: "28",
     category: "wedding",
     image: "/fu-1.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
     id: 28,
-    title: "",
+    title: "Personalized Family Resin Photo Block 28",
     slug: "29",
     category: "wedding",
     image: "/fu-2.jpeg",
+     pteg: "This is $130 for flower preservation or photoframe",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
     id: 29,
-    title: "wedding Tray 29",
+    title: "Engagement Tray 29",
     slug: "30",
     category: "wedding",
     image: "/fu-9.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
     id: 30,
-    title: "wedding Tray 30",
+    title: "Engagement Tray 30",
     slug: "31",
     category: "wedding",
     image: "/fu-11.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
+
 
   {
     id: 31,
-    title: "wedding Tray 31",
+    title: "Engagement Tray 31",
     slug: "32",
     category: "wedding",
     image: "/fu-12.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
     id: 32,
-    title: "family Tray 32",
+    title: "Personalized Graduation Photo Tray  32",
     slug: "33",
     category: "wedding",
     image: "/fu-15.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
     id: 33,
-    title: "wedding 33",
+    title: "Engagement Tray 33",
     slug: "34",
     category: "wedding",
     image: "/fu-4.jpeg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
     id: 34,
-    title: "wedding 34",
+    title: "Heart Shaped Wedding Resin Keepsake 34",
     slug: "35",
     category: "wedding",
     image: "/fu-17.jpg",
+     pteg: "Available customization.",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
@@ -316,6 +616,15 @@ sizes: [
     slug: "36",
     category: "wedding",
     image: "/hen.jpg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
   {
@@ -324,6 +633,15 @@ sizes: [
     slug: "37",
     category: "wedding",
     image: "/hj.jpg",
+     pteg: "Available in 10-inch sizes From $100  and 13-inch sizes From $115",
+  note: "Final price may vary depending on size and customization.",
+
+  type: "size-based",
+
+  sizes: [
+    { label: "10-inch Engagement Tray", price: 100 },
+    { label: "13-inch Engagement Tray", price: 115 },
+  ],
   },
 
 

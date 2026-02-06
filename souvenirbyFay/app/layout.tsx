@@ -11,7 +11,16 @@ import { LanguageProvider } from "@/context/LanguageContext";
 import ClientLayout from "@/components/ClientLayout";
 import { CartProvider } from "@/context/CartContext";
 import { CurrencyProvider } from "@/context/CurrencyContext";
+import { Montserrat } from "next/font/google";
 
+
+
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-montserrat",
+});
 
 
 
@@ -36,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="{montserrat.variable}">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

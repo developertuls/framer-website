@@ -230,3 +230,15 @@ body {
   font-optical-sizing: auto;
  
 } */
+
+
+
+
+
+.p2{
+visibility: hidden;
+}
+
+.hovereffect:hover .p2{
+  visibility: visible;
+}
