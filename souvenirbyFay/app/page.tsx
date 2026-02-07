@@ -3,6 +3,7 @@
 // import Hero from "@/components/Hero"
 import Featured from "@/components/Featured"
 import Overly from "@/components/Overly"
+import CustomerReviews from "@/components/CustomerReviews";
 
 import Hero2 from "@/components/Hero2"
 
@@ -16,9 +17,9 @@ export default function Home() {
       {/* <Hero/> */}
       <Hero2/>
       <Overly/>
-       {/* <StickyVideoSection/> */}
-      <Featured/>
      
+      <Featured/>
+       <CustomerReviews />
     </div>
     
         

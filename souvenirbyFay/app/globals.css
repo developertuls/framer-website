@@ -242,3 +242,14 @@ visibility: hidden;
 .hovereffect:hover .p2{
   visibility: visible;
 }
+
+
+@keyframes slowZoom {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.animate-slowZoom {
+  animation: slowZoom 20s ease-in-out infinite;
+}
