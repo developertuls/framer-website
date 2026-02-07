@@ -66,12 +66,12 @@ export default function CustomerReviews() {
       <button
         onClick={toggleSound}
         className="absolute bottom-8 right-8 z-50
-                   bg-white/80 hover:bg-white
-                   text-black text-sm
-                    rounded-full
+                    
+                   text-black text-xl
+                    rounded-full px-1 py-1
                    shadow-xl transition"
       >
-        {isMuted ? " 🔇 " : "🔊 "}
+        {isMuted ? " 🔇 " : "🔊"}
       </button>
 
       <div className="relative z-20 h-full flex flex-col justify-center">
