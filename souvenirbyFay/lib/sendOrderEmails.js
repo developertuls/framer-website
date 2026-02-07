@@ -2,6 +2,8 @@
 import emailjs from "emailjs-com";
 
 export const sendOrderEmails = async (orderPayload) => {
+  console.log("EMAIL FUNCTION CALLED");
+  console.log(orderPayload);
   const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
   const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 

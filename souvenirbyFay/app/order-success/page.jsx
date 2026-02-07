@@ -3,7 +3,7 @@
 
 import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import emailjs from "@emailjs/browser";
+import { sendOrderEmails } from "@/lib/sendOrderEmails"; // path ঠিক করো
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -17,23 +17,14 @@ function SuccessContent() {
 
     const order = JSON.parse(orderRaw);
 
-    emailjs.send(
-      "YOUR_SERVICE_ID",
-      "YOUR_TEMPLATE_ID",
-      {
-        customer_name: order.customerName,
-        customer_email: order.email,
-        total_price: order.total,
-      },
-      "YOUR_PUBLIC_KEY"
-    )
-    .then(() => {
-      console.log("Email sent successfully");
-      localStorage.removeItem("orderPayload");
-    })
-    .catch((error) => {
-      console.error("Email error:", error);
-    });
+    sendOrderEmails(order)
+      .then(() => {
+        console.log("Emails sent successfully");
+        localStorage.removeItem("orderPayload");
+      })
+      .catch((err) => {
+        console.error("Email error:", err);
+      });
 
   }, [sessionId]);
 
