@@ -3,6 +3,7 @@
 
 import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import emailjs from "@emailjs/browser";
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -11,7 +12,29 @@ function SuccessContent() {
   useEffect(() => {
     if (!sessionId) return;
 
-    console.log("Stripe Session:", sessionId);
+    const orderRaw = localStorage.getItem("orderPayload");
+    if (!orderRaw) return;
+
+    const order = JSON.parse(orderRaw);
+
+    emailjs.send(
+      "YOUR_SERVICE_ID",
+      "YOUR_TEMPLATE_ID",
+      {
+        customer_name: order.customerName,
+        customer_email: order.email,
+        total_price: order.total,
+      },
+      "YOUR_PUBLIC_KEY"
+    )
+    .then(() => {
+      console.log("Email sent successfully");
+      localStorage.removeItem("orderPayload");
+    })
+    .catch((error) => {
+      console.error("Email error:", error);
+    });
+
   }, [sessionId]);
 
   return (
