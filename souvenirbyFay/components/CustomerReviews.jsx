@@ -1,6 +1,7 @@
 
 "use client";
 
+import { Volume2, VolumeX } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -25,13 +26,13 @@ export default function CustomerReviews() {
 
   // Auto Slide
   useEffect(() => {
-    if (!isHovered && isMuted) {
+    if (!isHovered) {
       timeoutRef.current = setTimeout(() => {
         setIndex((prev) => (prev + 1) % reviews.length);
-      }, 7000);
+      }, 6000);
     }
     return () => clearTimeout(timeoutRef.current);
-  }, [index, isHovered, isMuted]);
+  }, [index, isHovered]);
 
   const toggleSound = () => {
     if (videoRef.current) {
@@ -41,123 +42,100 @@ export default function CustomerReviews() {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative py-16 md:py-24 overflow-hidden">
 
-      {/* 🎥 Video */}
+      {/* 🎥 Background Video */}
       <video
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700
+        ${!isMuted ? "brightness-110 scale-105" : "brightness-75"}`}
       >
         <source src="/eng.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay */}
-      <motion.div
-        animate={{ opacity: isMuted ? 1 : 0 }}
-        transition={{ duration: 0.6 }}
-        className="absolute inset-0 bg-black/50 z-10"
-      />
+      {/* Dark Overlay */}
+      <div className={`absolute inset-0 transition-all duration-500 z-10 
+        ${!isMuted ? "bg-black/30" : "bg-black/60"}`} />
 
-      {/* Sound Button */}
-      <button
+      {/* 🔊 Premium Sound Button */}
+      <motion.button
         onClick={toggleSound}
-        className="absolute bottom-8 right-8 z-50
-                    
-                   text-black text-xl
-                    rounded-full px-1 py-1
-                   shadow-xl transition"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        className="absolute bottom-5 right-5 md:bottom-8 md:right-8 z-50"
       >
-        {isMuted ? " 🔇 " : "🔊"}
-      </button>
+        <div className="w-10 h-10 md:w-12 md:h-12
+                        rounded-full
+                        bg-white/20 backdrop-blur-md
+                        border border-white/30
+                        flex items-center justify-center
+                        shadow-xl">
+          {isMuted ? (
+            <VolumeX size={18} className="text-white" />
+          ) : (
+            <Volume2 size={18} className="text-white" />
+          )}
+        </div>
+      </motion.button>
 
-      <div className="relative z-20 h-full flex flex-col justify-center">
+      <div className="relative z-20">
 
         {/* Heading */}
         <motion.div
-          animate={{ opacity: isMuted ? 1 : 0 }}
+          animate={{ opacity: !isMuted ? 0 : 1 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12 text-white"
+          className="text-center mb-8 md:mb-14 text-white px-4"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mt-9">
+          <h2 className="text-2xl md:text-4xl font-semibold tracking-wide">
             Happy Customers
           </h2>
-          <p className="mt-3 text-gray-200">
+          <p className="mt-2 text-gray-200 text-xs md:text-sm">
             Real feedback from our lovely clients
           </p>
         </motion.div>
 
         {/* Slider */}
-        <motion.div
-            animate={{
-    x: !isMuted && typeof window !== "undefined" && window.innerWidth >= 768 ? "35vw" : 0,
-    y: !isMuted && typeof window !== "undefined" && window.innerWidth >= 768 ? "30vh" : 0,
-    scale: !isMuted && typeof window !== "undefined" && window.innerWidth >= 768 ? 0.55 : 1,
-  }}
-  transition={{
-    duration: 0.9,
-    ease: [0.22, 1, 0.36, 1],
-  }}
-  className="relative w-full max-w-5xl mx-auto
-             h-[320px] sm:h-[380px] md:h-[450px]
-             overflow-hidden px-4"
-  onMouseEnter={() => setIsHovered(true)}
-  onMouseLeave={() => setIsHovered(false)}
+        <div
+          className="relative w-full max-w-4xl mx-auto
+                     h-[340px] sm:h-[400px] md:h-[480px]
+                     overflow-hidden px-4"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <AnimatePresence mode="wait">
             <motion.div
               key={reviews[index].id}
-              initial={{ x: "100%", opacity: 0.8 }}
+              initial={{ x: "100%" }}
               animate={{
                 x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 0.9,
-                  ease: "easeOut",
-                },
+                transition: { duration: 0.45 } // fast from right
               }}
               exit={{
-                x: "-120%",
-                opacity: 0,
-                transition: {
-                  duration: 1.4,
-                  ease: [0.22, 1, 0.36, 1],
-                },
+                x: "-100%",
+                transition: { duration: 1.2 } // slow to left
               }}
               className="absolute inset-0 flex items-center justify-center"
             >
-              {/* Card Background Hidden When Sound On */}
-              <motion.div
-                animate={{
-                  backgroundColor: isMuted
-                    ? "rgba(255,255,255,0.1)"
-                    : "rgba(0,0,0,0)",
-                  backdropFilter: isMuted
-                    ? ""
-                    : "blur(0px)",
-                  borderColor: isMuted
-                    ? "rgba(255,255,255,0.2)"
-                    : "rgba(0,0,0,0)",
-                }}
-                transition={{ duration: 0.6 }}
-                className="w-full h-full
-                           rounded-2xl md:rounded-3xl
-                           p-4 sm:p-6 md:p-8
-                           shadow-2xl
-                           flex flex-col mb-9" 
-              >
-                {/* Hide Extra Elements */}
-                {isMuted && (
-                  <div className="text-center text-yellow-400 text-base md:text-lg mb-3 md:mb-4">
-                    ★★★★★
-                  </div>
-                )}
+              <div className={`w-full h-full 
+                               rounded-3xl 
+                               bg-white/10
+                               backdrop-blur-md
+                               border border-white/20
+                               shadow-2xl
+                               p-4 md:p-8
+                               transition-all duration-500
+                               ${!isMuted ? "opacity-0 scale-95" : "opacity-100 scale-100"}
+                               flex flex-col`}>
 
-                {/* Image */}
-                <div className="relative flex-1 rounded-xl md:rounded-2xl overflow-hidden">
+                <div className="text-center text-yellow-400 text-sm md:text-lg mb-3">
+                  ★★★★★
+                </div>
+
+                <div className="relative flex-1 rounded-2xl overflow-hidden">
                   <Image
                     src={reviews[index].image}
                     alt="Customer Review"
@@ -166,15 +144,14 @@ export default function CustomerReviews() {
                   />
                 </div>
 
-                {isMuted && (
-                  <div className="text-center text-xs sm:text-sm text-white mt-3 md:mt-4">
-                    ✔ Verified Customer
-                  </div>
-                )}
-              </motion.div>
+                <div className="text-center text-xs md:text-sm text-white mt-3">
+                  ✔ Verified Customer
+                </div>
+
+              </div>
             </motion.div>
           </AnimatePresence>
-        </motion.div>
+        </div>
 
       </div>
     </section>
