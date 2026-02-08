@@ -39,7 +39,7 @@ export default function Hero() {
 
             <div className="mt-8 flex gap-4">
               <Link
-                href="/collections"
+                href="/products"
                 className="rounded-full bg-[#e6c28a] px-6 py-3 text-sm font-medium text-black hover:bg-[#d9b172] transition"
               >
                 Explore Collection
