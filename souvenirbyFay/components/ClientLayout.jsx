@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PrivacyPolicyModal from "@/components/PrivacyPolicyModal";
-
+import CustomerReviews from "@/components/CustomerReviews";
 export default function ClientLayout({ children }) {
   const [openPrivacy, setOpenPrivacy] = useState(false);
 
@@ -33,7 +33,7 @@ export default function ClientLayout({ children }) {
       <Navbar />
 
       {children}
-
+     <CustomerReviews />
       <Footer onOpenPrivacy={() => setOpenPrivacy(true)} />
 
       <PrivacyPolicyModal
