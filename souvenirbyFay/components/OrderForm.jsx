@@ -18,7 +18,7 @@ export default function OrderForm({ product }) {
   const [quantity, setQuantity] = useState(1);
   const [customText, setCustomText] = useState("");
   const [specialRequest, setSpecialRequest] = useState("");
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
 
   const [addons, setAddons] = useState({
     coasterNoBase: false,
@@ -89,7 +89,7 @@ export default function OrderForm({ product }) {
       quantity,
       customText,
       specialRequest,
-      email,
+      // email,
       addons: product?.type === "size-based" ? selectedAddons : [],
       price: priceDetails.finalTotal,
       category: product?.category,
@@ -241,14 +241,14 @@ const formatPrice = (amount) => {
           className="w-full rounded-2xl border bg-gray-50 p-4 text-sm"
         />
 
-        <input
+        {/* <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           type="email"
           required
           placeholder="Email"
           className="w-full rounded-2xl border bg-gray-50 p-4 text-sm"
-        />
+        /> */}
 
         {/* LIVE PRICE BOX */}
         {(product?.type === "fixed" || selectedSize) && (

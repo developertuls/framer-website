@@ -1,7 +1,7 @@
 
 
 "use client";
-
+import { sendOrderEmails } from "@/lib/sendOrderEmails"; 
 import { useCart } from "@/context/CartContext";
 import { useCurrency } from "@/context/CurrencyContext";
 import Image from "next/image";
@@ -50,20 +50,51 @@ export default function CheckoutPage() {
     });
   };
 
-  const handleSubmitOrderRequest = (e) => {
-    e.preventDefault();
+  // const handleSubmitOrderRequest = (e) => {
+  //   e.preventDefault();
 
-    const orderPayload = {
-      customer: form,
-      items: cartItems,
-      total: orderTotal,
-      currency: currency,
-      createdAt: new Date().toISOString(),
-    };
+  //   const orderPayload = {
+  //     customer: form,
+  //     items: cartItems,
+  //     total: orderTotal,
+  //     currency: currency,
+  //     createdAt: new Date().toISOString(),
+  //   };
 
-    localStorage.setItem("orderPayload", JSON.stringify(orderPayload));
-    router.push("/payment");
+  //   localStorage.setItem("orderPayload", JSON.stringify(orderPayload));
+  //   router.push("/payment");
+  // };
+
+
+const handleSubmitOrderRequest = async (e) => {
+  e.preventDefault();
+
+  const orderPayload = {
+    customer: form,
+    items: cartItems,
+    total: orderTotal,
+    currency: currency,
+    createdAt: new Date().toISOString(),
+    payment: {
+      method: "Custom Order",
+      status: "Pending",
+    },
   };
+
+  try {
+    await sendOrderEmails(orderPayload);
+    console.log("Emails sent successfully");
+  } catch (error) {
+    console.error("Email error:", error);
+  }
+
+  localStorage.setItem("orderPayload", JSON.stringify(orderPayload));
+  router.push("/payment");
+};
+
+
+
+
 
   if (cartItems.length === 0) {
     return (

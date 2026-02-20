@@ -1,5 +1,7 @@
 
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
+
 
 export const sendOrderEmails = async (orderPayload) => {
   console.log("EMAIL FUNCTION CALLED");
