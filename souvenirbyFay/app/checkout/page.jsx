@@ -21,18 +21,12 @@ export default function CheckoutPage() {
     address: "",
   });
 
-  // ================= TOTAL CALCULATION =================
   const orderTotal = useMemo(() => {
-    return cartItems.reduce((total, item) => {
-      const addonsTotal =
-        item.addons?.reduce((sum, addon) => sum + addon.price, 0) || 0;
-
-      return (
-        total +
-        (item.price + addonsTotal) * item.quantity
-      );
-    }, 0);
-  }, [cartItems]);
+  return cartItems.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
+}, [cartItems]);
+ 
 
   // ================= FORMAT PRICE =================
   const formatPrice = (amount) => {
@@ -66,7 +60,7 @@ export default function CheckoutPage() {
   // };
 
 
-const handleSubmitOrderRequest = async (e) => {
+const handleSubmitOrderRequest = (e) => {
   e.preventDefault();
 
   const orderPayload = {
@@ -76,17 +70,10 @@ const handleSubmitOrderRequest = async (e) => {
     currency: currency,
     createdAt: new Date().toISOString(),
     payment: {
-      method: "Custom Order",
+      method: "Stripe",
       status: "Pending",
     },
   };
-
-  try {
-    await sendOrderEmails(orderPayload);
-    console.log("Emails sent successfully");
-  } catch (error) {
-    console.error("Email error:", error);
-  }
 
   localStorage.setItem("orderPayload", JSON.stringify(orderPayload));
   router.push("/payment");
@@ -135,12 +122,8 @@ const handleSubmitOrderRequest = async (e) => {
           <h2 className="text-xl font-semibold">Order Summary</h2>
 
           {cartItems.map((item) => {
-            const addonsTotal =
-              item.addons?.reduce((sum, addon) => sum + addon.price, 0) || 0;
-
-            const itemTotal =
-              (item.price + addonsTotal) * item.quantity;
-
+          
+          const itemTotal = item.price * item.quantity;
             return (
               <div
                 key={item.id}

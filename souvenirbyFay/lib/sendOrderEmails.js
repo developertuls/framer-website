@@ -11,14 +11,25 @@ export const sendOrderEmails = async (orderPayload) => {
 
   const adminTemplate = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE;
   const userTemplate = process.env.NEXT_PUBLIC_EMAILJS_USER_TEMPLATE;
-
+ 
   // 🧾 items list (FIXED: item.title)
-  const itemsText = orderPayload.items
-    .map(
-      (item, index) =>
-        `${index + 1}. ${item.title} × ${item.quantity}`
-    )
-    .join("\n");
+ const itemsText = orderPayload.items
+  .map((item, index) => {
+    const addonsText = item.addons?.length
+      ? item.addons.map((a) => a.label).join(", ")
+      : "None";
+
+    return `
+${index + 1}. ${item.title}
+Size: ${item.size || "N/A"}
+Quantity: ${item.quantity}
+Custom Text: ${item.customText || "None"}
+Special Request: ${item.specialRequest || "None"}
+Add-ons: ${addonsText}
+----------------------------------------
+`;
+  })
+  .join("\n");
 
   const templateParams = {
     customer_name: orderPayload.customer.name,
@@ -37,12 +48,12 @@ export const sendOrderEmails = async (orderPayload) => {
   };
 
   // 📧 Admin Email (FULL DETAILS)
-  await emailjs.send(
-    serviceId,
-    adminTemplate,
-    templateParams,
-    publicKey
-  );
+  // await emailjs.send(
+  //   serviceId,
+  //   adminTemplate,
+  //   templateParams,
+  //   publicKey
+  // );
 
   // 📧 User Email (SHORT SUMMARY)
   await emailjs.send(
@@ -51,4 +62,7 @@ export const sendOrderEmails = async (orderPayload) => {
     templateParams,
     publicKey
   );
+
+
+
 };

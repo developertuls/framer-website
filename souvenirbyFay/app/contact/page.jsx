@@ -2,45 +2,65 @@
 "use client";
 
 import { motion } from "framer-motion";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { useState } from "react";
 
 export default function ContactPage() {
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  const [status, setStatus] = useState(null); // success | error
+  const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // 🔒 Safety check (very important)
+    if (
+      !process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ||
+      !process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE ||
+      !process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+    ) {
+      console.error("EmailJS environment variables missing");
+      setStatus("error");
+      return;
+    }
+
     setLoading(true);
     setStatus(null);
 
-    emailjs
-      .send(
-        "service_o10gr7l",
-        "template_0uamih2",
-        formData,
-        "V5UV5l4V0Soqp-qYd"
-      )
-      .then(() => {
-        setStatus("success");
-        setFormData({ name: "", email: "", message: "" });
-      })
-      .catch(() => {
-        setStatus("error");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    try {
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_CONTACT_TEMPLATE,
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      );
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+
+    } catch (error) {
+      console.error("Contact Email Error:", error);
+      setStatus("error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -58,22 +78,20 @@ export default function ContactPage() {
 
         {/* Subtitle */}
         <p className="text-center text-gray-600 mb-10">
-          Have questions or need a custom order?  
+          Have questions or need a custom order?
           Send us a message and we’ll be happy to help.
         </p>
 
- {/* Status Message */}
-          {status === "success" && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="rounded-xl bg-green-100 text-green-700 px-4 py-3 text-sm"
-            >
-              ✅ Message sent successfully! We’ll get back to you soon.
-            </motion.div>
-          )}
-
-
+        {/* Success Message */}
+        {status === "success" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="rounded-xl bg-green-100 text-green-700 px-4 py-3 text-sm mb-6"
+          >
+            ✅ Message sent successfully! We’ll get back to you soon.
+          </motion.div>
+        )}
 
         {/* Form */}
         <motion.form
@@ -82,7 +100,6 @@ export default function ContactPage() {
           whileInView={{ opacity: 1, y: 0 }}
           className="space-y-6 bg-white/40 p-6 sm:p-10 rounded-3xl shadow-lg"
         >
-          {/* Name + Email */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <input
               type="text"
@@ -91,8 +108,7 @@ export default function ContactPage() {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full rounded-xl bg-[#fff] px-4 py-3
-              focus:outline-none focus:ring-2 focus:ring-[#0a6562]"
+              className="w-full rounded-xl bg-[#fff] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0a6562]"
             />
 
             <input
@@ -102,12 +118,10 @@ export default function ContactPage() {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full rounded-xl bg-[#fff]  px-4 py-3
-              focus:outline-none focus:ring-2 focus:ring-[#0a6562]"
+              className="w-full rounded-xl bg-[#fff] px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#0a6562]"
             />
           </div>
 
-          {/* Message */}
           <textarea
             name="message"
             rows="4"
@@ -115,11 +129,8 @@ export default function ContactPage() {
             value={formData.message}
             onChange={handleChange}
             required
-            className="w-full rounded-xl bg-[#fff]  px-4 py-3 resize-none
-            focus:outline-none focus:ring-2 focus:ring-[#0a6562]"
+            className="w-full rounded-xl bg-[#fff] px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-[#0a6562]"
           />
-
-         
 
           {status === "error" && (
             <motion.div
@@ -131,14 +142,10 @@ export default function ContactPage() {
             </motion.div>
           )}
 
-          {/* Button */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-full bg-[#0a6562] py-3
-            text-white font-medium transition
-            hover:bg-[#119894]
-            disabled:opacity-60"
+            className="w-full rounded-full bg-[#0a6562] py-3 text-white font-medium transition hover:bg-[#119894] disabled:opacity-60"
           >
             {loading ? "Sending..." : "Submit"}
           </button>
