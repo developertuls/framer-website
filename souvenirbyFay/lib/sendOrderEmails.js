@@ -9,9 +9,9 @@ export const sendOrderEmails = async (orderPayload) => {
   const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
   const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-  const adminTemplate = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE;
+  // const adminTemplate = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE;
   const userTemplate = process.env.NEXT_PUBLIC_EMAILJS_USER_TEMPLATE;
- 
+  
   // 🧾 items list (FIXED: item.title)
  const itemsText = orderPayload.items
   .map((item, index) => {
