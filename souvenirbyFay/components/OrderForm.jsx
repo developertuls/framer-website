@@ -91,7 +91,7 @@ export default function OrderForm({ product }) {
       specialRequest,
       // email,
       addons: product?.type === "size-based" ? selectedAddons : [],
-      price: priceDetails.finalTotal,
+     price: priceDetails.base + priceDetails.addonsTotal,
       category: product?.category,
     });
 
