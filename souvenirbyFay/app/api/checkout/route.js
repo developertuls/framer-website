@@ -2,6 +2,7 @@
 
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
+import { getDefaultHighWaterMark } from "node:stream";
 
 export async function POST(req) {
   try {
@@ -11,6 +12,7 @@ export async function POST(req) {
         { status: 500 }
       );
     }
+getDefaultHighWaterMark
 
     const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -44,7 +46,7 @@ export async function POST(req) {
     return NextResponse.json({ url: session.url });
 
   } catch (error) {
-    console.error("Stripe Error:", error);
+    console.error("Stripe Error:", error);4
     return NextResponse.json(
       { error: "Something went wrong" },
       { status: 500 }
