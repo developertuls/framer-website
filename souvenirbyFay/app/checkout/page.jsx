@@ -237,7 +237,7 @@ const handleSubmitOrderRequest = (e) => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
             type="submit"
-            className="w-full rounded-full bg-[#0f766e] py-4 text-white text-lg font-medium"
+            className="cursor-pointer  w-full rounded-full bg-[#0f766e] py-4 text-white text-lg font-medium"
           >
             Submit Order Request
           </motion.button>

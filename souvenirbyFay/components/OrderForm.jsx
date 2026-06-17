@@ -285,7 +285,7 @@ const formatPrice = (amount) => {
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
           type="submit"
-          className="w-full rounded-full bg-[#336a68] py-4 text-white text-lg"
+          className="cursor-pointer  w-full rounded-full bg-[#336a68] py-4 text-white text-lg"
         >
           Add to Cart
         </motion.button>
