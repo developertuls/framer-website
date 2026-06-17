@@ -132,6 +132,6 @@ export default function OurCraft() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </section>   
   );
 }
