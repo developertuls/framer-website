@@ -1,16 +1,16 @@
 
-import { NextResponse } from "next/server";
+// import { NextResponse } from "next/server";
 
-export function middleware(request) {
-  const country = request.geo?.country || "US";
+// export function middleware(request) {
+//   const country = request.geo?.country || "US";
 
-  const response = NextResponse.next();
+//   const response = NextResponse.next();
 
-  response.cookies.set("user-country", country, {
-    path: "/",
-  });
+//   response.cookies.set("user-country", country, {
+//     path: "/",
+//   });
 
-  // return response;
-    return NextResponse.next();
+//   // return response;
+//     return NextResponse.next();
   
-}
+// }
