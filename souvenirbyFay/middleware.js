@@ -10,5 +10,7 @@ export function middleware(request) {
     path: "/",
   });
 
-  return response;
+  // return response;
+    return NextResponse.next();
+  
 }
