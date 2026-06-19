@@ -35,7 +35,7 @@ export default function Footer({ onOpenPrivacy }) {
      </Link>
    
 
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm text-gray-400 leading-relaxed  md:p-4">
               Luxury handmade resin art crafted with care, faith, and elegance.
             </p>
           </div>

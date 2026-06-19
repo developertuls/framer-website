@@ -44,7 +44,7 @@ export default function Navbar() {
 
         {/* DESKTOP NAV */}
         <nav className="hidden lg:flex items-center gap-8 text-[16px] font-light">
-          <Link href="/" className={navClass("/")}>{t("Home")}</Link>
+          <Link href="/" className={navClass("/")} >{t("Home")}</Link>
           <Link href="/products" className={navClass("/products")}>{t("Collections")}</Link>
           <Link href="/about" className={navClass("/about")}>{t("About Us")}</Link>
           <Link href="/contact" className={navClass("/contact")}>{t("Contact")}</Link>

@@ -68,7 +68,7 @@ export default function PaymentPage() {
           onClick={handlePay}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          className="w-full bg-[#336a68] text-white py-5 rounded-full text-lg font-medium shadow-xl"
+          className="cursor-pointer   w-full bg-[#336a68] text-white py-5 rounded-full text-lg font-medium shadow-xl"
         >
           Pay Securely
         </motion.button>
