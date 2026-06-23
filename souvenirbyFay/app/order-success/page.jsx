@@ -6,6 +6,8 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { sendOrderEmails } from "@/lib/sendOrderEmails";
+ import Link from "next/link";
+
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -75,6 +77,9 @@ function SuccessContent() {
             onClick={() => router.push("/shop")}
             className="px-6 py-3 rounded-xl border border-gray-300 font-semibold hover:bg-gray-100 transition duration-300"
           >
+            <Link href="/shop">
+             Continue Shopping
+            </Link>
             Continue Shopping
           </button>
         </div>
