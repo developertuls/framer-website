@@ -80,7 +80,7 @@ function SuccessContent() {
             <Link href="/shop">
              Continue Shopping
             </Link>
-            Continue Shopping
+          
           </button>
         </div>
       </motion.div>
